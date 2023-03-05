@@ -1,0 +1,15 @@
+<section class="link-container">
+    <div class="container">
+      {%- for metric in site.site_metrics -%}
+      <article class="link-item">
+        <div class="link-icon">
+          <i class="{{ metric.icon }}"></i>
+        </div>
+        <div class="link-info">
+          <div class="info-count">{{ metric.value }}</div>
+          <div class="info-desc">{{ metric.label }}</div>
+        </div>
+      </article>
+      {%- endfor -%}
+    </div>
+  </section>

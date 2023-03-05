@@ -1,0 +1,15 @@
+getting-started:
+  name: Getting Started
+  css-class: tag-red
+overview:
+  name: Overview
+  css-class: tag-orange
+formatting:
+  name: Formatting
+  css-class: tag-yellow
+publishing:
+  name: Publishing
+  css-class: tag-blue
+jekyll-tutorial:
+  name: Jekyll Tutorial
+  css-class: tag-green

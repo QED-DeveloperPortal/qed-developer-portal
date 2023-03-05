@@ -1,0 +1,19 @@
+{% assign colours = "#007faa, #551700, #1f3a93, #345321, #1c2a43, #008080, #006060, #002a00, #9b59b6, #a74165, #9a12b3, #7d314c, #322a60, #1e824c, #3e3e3e, #8d6708, #483c0c, #4b6a88, #d43900, #802200, #696969, #c0392b, #b11030, #a2674e" | split: ',' %}
+{% assign colour = colours[0] %}
+{% assign label = 'P' %}
+{% if entry.author %}
+    {% if site.data.authors[entry.author].name %}
+        {% assign colour-index = entry.author.size | modulo: colours.size %}
+    {% else %}
+        {% assign colour-index = site.data.authors[entry.author].name.size | modulo: colours.size %}
+    {% endif %}
+    {% assign colour = colours[colour-index] %}
+    {% if site.data.authors[entry.author].abbrev %}
+        {% assign label = site.data.authors[entry.author].abbrev %}
+    {% else %}
+        {% assign label = entry.author | slice: 0 | capitalize %}
+    {% endif %}
+{% endif %}
+<div class="dev-avatar" style="background-color: {{colour}};">
+    <span class="dev-avatar-label">{{label}}</span>
+</div>

@@ -1,0 +1,37 @@
+# Sample Authors
+# Remove file or replace with your own
+
+matt:
+  name: Matt Warwick
+  abbrev: MW
+  picture: /images/authors/matty-b-150x150.jpg
+  twitter: "@mattyboisterous"
+  links:
+    - title: Twitter
+      url: https://twitter.com/mattyboisterous
+      icon: fab fa-twitter-square
+
+joyclyn:
+  name: Joyclyn Vincent
+  abbrev: JV
+  picture: /images/authors/JRV150bot.png
+
+gary:
+  name: Gary Morton
+  abbrev: GM
+  picture: /images/authors/Avatar-GaryMorton-150px.png
+
+jeny:
+  name: Jeny Amatya
+  abbrev: JA
+  picture: /images/authors/Avatar-JenyAmatya.png
+
+andrew:
+  name: Andrew McGrath
+  abbrev: AM
+  picture: /images/authors/bio-photo-2.jpg
+
+chatGpt:
+  name: ChatGPT
+  abbrev: GPT
+  picture: /images/authors/Avatar-ChatGPT.png

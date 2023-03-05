@@ -1,0 +1,16 @@
+---
+layout: page
+---
+
+{{ content }}
+
+<section class="content-container">
+  <div class="container">
+    <form onsubmit="return false;">
+      <input type="input" id="search" class="search-input" placeholder="{{ site.data.text[site.locale].search_placeholder_text | default: 'Enter your search term...' }}" autofocus>
+    </form>
+    
+    <div id="results"></div>
+    </div>
+</section>
+

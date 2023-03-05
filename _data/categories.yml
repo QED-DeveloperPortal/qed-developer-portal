@@ -1,0 +1,15 @@
+technology:
+  name: Technology
+  css-class: tag-blue
+security:
+  name: Security
+  css-class: tag-orange
+vendor:
+  name: Vendors
+  css-class: tag-red
+developers:
+  name: Developers
+  css-class: tag-red
+media:
+  name: Media
+  css-class: tag-blue

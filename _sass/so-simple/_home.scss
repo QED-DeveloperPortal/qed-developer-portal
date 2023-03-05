@@ -1,0 +1,236 @@
+.main-container {
+    position: relative;
+  }
+  
+  section.carousel-container {
+    min-height: 304px;
+    padding-bottom: 8px;
+  
+    .container {
+      max-width: 1440px;
+    }
+  }
+  
+  .link-container {
+    padding: 24px 0 24px 0;
+  
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: start;
+    }
+  }
+  
+  article.link-item {
+    min-width: 96px;
+    margin-right: 32px;
+    display: flex;
+  
+    .link-icon {
+      font-size: 1.6rem;
+    }
+  
+    .link-info {
+      line-height: 1rem;
+      font-size: 1rem;
+      padding-top: 2px;
+      margin-left: 8px;
+  
+      .info-count {
+        font-weight: 600;
+      }
+    }
+  }
+  
+  .content-container {
+    padding-top: 32px;
+  }
+  
+  .quick-link-container {
+    display: inline-flex;
+    position: relative;
+    width: 100%;
+    margin-bottom: 16px;
+  
+    .quick-links {
+      width: 70%;
+    }
+  
+    .dev-links {
+      padding-left: 32px;
+    }
+  
+    .avatar {
+      position: absolute;
+      display: inline-flex;
+      padding-top: 6px;
+      padding-right: 8px;
+    }
+  
+    .avatar-label {
+      font-size: 1.3rem;
+    }
+  
+    .info-container {
+      display: inline-block;
+      padding-left: 32px;
+      flex: 0 0 100%;
+  
+      .label-header {
+        font-family: 'Open Sans';
+        font-weight: 100;
+        font-size: 1.6rem;
+      }
+  
+      .label-sub-header {
+        font-family: 'Open Sans';
+        font-weight: 100;
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+      }
+    }
+  }
+  
+  .dev-link-container {
+    position: relative;
+    margin-bottom: 16px;
+  
+    .dev-avatar {
+      position: absolute;
+      top: 8px;
+      display: inline-flex;
+      color: #fff;
+      padding: 16px;
+      height: 48px;
+      width: 48px;
+      border-radius: 24px;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+  
+    .dev-avatar-label {
+      font-size: 1rem;
+    }
+  
+    .dev-info-container {
+      display: inline-block;
+      padding-left: 64px;
+      flex: 0 0 100%;
+  
+      .label-header {
+        font-family: 'Open Sans';
+        font-weight: 100;
+        font-size: 1.2rem;
+
+        a {
+          text-decoration: inherit;
+        }
+      }
+  
+      .label-sub-header {
+        font-family: 'Open Sans';
+        font-weight: 100;
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+      }
+    }
+  }
+  
+  .dev-link-header {
+    font-family: 'Open Sans';
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin-bottom: 32px;
+  }
+
+  .social-link-container {
+    background-color: var(--c-themePrimaryLight); // todo: fix
+    color: var(--c-themeQuaternaryDark); // todo: fix
+    text-align: center;
+    font-size: 0.5em;
+    padding: 24px 0 24px 0;
+  }
+  
+  .icon-label {
+    font-size: 0.8rem;
+    margin-right: 4px;
+    vertical-align: middle;
+    position: absolute;
+    left: -80px;
+    top: 6px;
+  }
+  
+  .icon-end {
+    float: right;
+    vertical-align: middle;
+    position: relative;
+  }
+  
+  @media screen and (max-width: 390px) {
+    .icon-end {
+      visibility: hidden;
+      width: 0;
+    }
+  }
+  
+  @media screen and (max-width: 990px) {
+    section.card-container {
+      > .card {
+        flex-basis: calc(50% - 32px);
+      }
+    }
+  
+    article.link-item {
+      margin-right: 8px;
+  
+      .link-icon {
+        font-size: 1.6rem;
+      }
+  
+      .link-info {
+        font-size: 0.8rem;
+      }
+    }
+  
+    .quick-link-container {
+      display: inherit;
+  
+      .dev-links {
+        border-left: inherit;
+      }
+  
+      .quick-links {
+        width: 100%;
+      }
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    section.card-container {
+      > .card {
+        flex-basis: calc(100% - 16px);
+        margin: 8px;
+      }
+    }
+  
+    article.link-item {
+      margin-right: 4px;
+  
+      .link-icon {
+        font-size: 1.6rem;
+      }
+  
+      .link-info {
+        font-size: 0.8rem;
+      }
+    }
+
+    .quick-link-container {
+      .dev-links {
+        border-left: none !important;
+      }
+    }
+  }
+  

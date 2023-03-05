@@ -1,0 +1,55 @@
+<header class="header">
+  <div class="container">
+    <div id=“header-logo”>
+      <img id="header-img" src="{{ '/images/Queensland_Government_logo_logotype.png' | relative_url }}">
+    </div>
+    <span id=“sub-header-logo”>
+      <img id="sub-header-img" src="{{ '/images/departmentname.svg' | relative_url }}">
+    </span>
+    <span class="header-sub">{{ site.title }}</span>
+
+    <div id="auth-container" class="auth-container">
+      <span id="user-info"></div>
+    </div>
+
+    <!-- {% if site.logo %}
+      <a href="{{ '/' | relative_url }}" class="site-logo" rel="home" title="{{ site.title }}">
+        <img src="{{ site.logo | relative_url }}" class="site-logo-img animated fadeInDown" alt="{{ site.title }}">
+      </a>
+    {% endif %} -->
+    {% assign page_image = page.image.path | default: page.image %}
+    {% unless page_image %}
+      <!-- {% if page.url == '/' %}
+        <h1 class="site-title animated fadeIn"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+      {% else %}
+        <div class="site-title animated fadeIn"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></div>
+      {% endif %}
+      <p class="site-description animated fadeIn" itemprop="description">{{ site.description }}</p> -->
+    {% endunless %}
+    <script>
+      const authContainer = document.getElementById("auth-container");
+      const userInfo = document.getElementById("user-info");
+
+      fetch("/.auth/me")
+          .then(response => response.json())
+          .then(data => {
+              if (data.clientPrincipal) {
+                userInfo.innerText = `Hello ${data.clientPrincipal.userDetails}`;
+
+                const signOutLink = document.createElement("a");
+                signOutLink.innerText = "Sign out";
+                signOutLink.classList.add('auth-link');
+                signOutLink.href = "/.auth/logout";
+                authContainer.appendChild(signOutLink);
+              } else {
+                const signInLink = document.createElement("a");
+                signInLink.innerText = "Sign in";
+                signInLink.classList.add('auth-link');
+                signInLink.href = "/.auth/login/aadb2c";
+
+                authContainer.appendChild(signInLink);
+              }
+          });
+  </script>
+  </div>
+</header><!-- /.masthead -->

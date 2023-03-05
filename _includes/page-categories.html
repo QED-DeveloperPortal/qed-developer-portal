@@ -1,0 +1,17 @@
+{% if page.categories.size > 0 %}
+  <h3 class="page-taxonomies-title">{{ site.data.text[site.locale].categories | default: 'Categories' }}</h3>
+  {% assign categories = page.categories | sort %}
+  <ul class="page-taxonomies">
+    {%- for category in categories -%}
+    {% if site.data.categories[category].name %}
+      <li class="page-taxonomy {{ site.data.categories[category].css-class }}">
+        {%- if site.category_archive_path -%}
+          <a class="p-category" href="{{ category | slugify | prepend: site.category_archive_path | relative_url }}" title="{{ site.data.text[site.locale].pages_categorized | default: 'Pages filed under' }} {{ category }}">{{ site.data.categories[category].name }}</a>
+        {%- else -%}
+        {{ site.data.categories[category].name }}
+        {%- endif -%}
+      </li>
+      {% endif %}
+    {%- endfor- %}
+  </ul>
+{% endif %}

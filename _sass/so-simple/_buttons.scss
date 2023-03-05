@@ -1,0 +1,213 @@
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+
+/*
+   Default button
+   ========================================================================== */
+
+.btn {
+  /* default */
+  display: inline-block;
+  margin-bottom: 0.25em;
+  padding: 0.5em 1em;
+  font-family: $sans-serif-font-family;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border-width: 0;
+  border-radius: $border-radius;
+  cursor: pointer;
+
+  .icon {
+    margin-right: 0.5em;
+  }
+
+  .icon + .hidden {
+    margin-left: -0.5em; /* override for hidden text*/
+  }
+
+  /* fills width of parent container */
+  &--block {
+    display: block;
+    width: 100%;
+
+    + .btn--block {
+      margin-top: 0.25em;
+    }
+  }
+
+  /* disabled */
+  &--disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    filter: alpha(opacity=65);
+    box-shadow: none;
+    opacity: 0.65;
+  }
+
+  /* extra large button */
+  &--x-large {
+    font-size: 2rem;
+  }
+
+  /* large button */
+  &--large {
+    font-size: 1.5rem;
+  }
+
+  /* small button */
+  &--small {
+    font-size: 0.75rem;
+  }
+}
+
+/* Auth Social Provider buttons */
+$white: #fff;
+$github-blue: #4078c0;
+$google-blue: #4285f4;
+$twitter-blue: #1DA1F2;
+$facebook-blue: #1877f2;
+$button-active-blue: #1669F2;
+
+.auth-container {
+	min-height: 16px;
+}
+
+.auth-link {
+	float: right;
+}
+
+#login-buttons,
+#demo-buttons {
+  display: flex;
+  margin-top: 16px;
+}
+
+#user-info {
+  float: right;
+  font-family: 'Open Sans';
+  margin-bottom: 8px;
+  margin-right: 8px;
+  font-weight: 500;
+}
+
+.btn-auth {
+  width: 200px;
+  height: 42px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  border-radius: 2px;
+  box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+  .auth-icon-wrapper {
+    position: absolute;
+    margin-top: 1px;
+    margin-left: 1px;
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    background-color: $white;
+  }
+  .auth-icon {
+    position: absolute;
+    margin-top: 8px;
+    margin-left: 8px;
+    width: 24px;
+    height: 24px;
+  }
+
+  .icon-github {
+    color: $github-blue;
+  }
+
+  .icon-google {
+    color: $google-blue;
+  }
+
+  .icon-twitter {
+    color: $twitter-blue;
+  }
+
+  .icon-facebook {
+    color: $facebook-blue;
+  }
+
+  .btn-text {
+    float: right;
+    margin: 11px 11px 0 0;
+    color: $white;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+    font-family: "Roboto";
+  }
+
+  .btn-text-small {
+    display: none;
+  }
+
+  &:hover {
+    box-shadow: 0 0 6px $google-blue;
+    cursor: pointer;
+  }
+  &:active {
+    background: $button-active-blue;
+  }
+}
+
+@media (max-width: 820px) {
+  .btn-auth {
+    .btn-text-small {
+      display: inherit;
+    }
+  
+    .btn-text-large {
+      display: none;
+    }
+  }
+}
+
+.btn-demo {
+  width: 200px;
+  height: 42px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  border-radius: 2px;
+  background-color: #fff;
+  box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+
+  &:hover {
+    box-shadow: 0 0 6px $google-blue;
+    cursor: pointer;
+  }
+  &:active {
+    background: $button-active-blue;
+  }
+}
+
+.bg-github {
+  background-color: $github-blue;
+}
+
+.bg-google {
+  background-color: $google-blue;
+}
+
+.bg-twitter {
+  background-color: $twitter-blue;
+}
+
+.bg-facebook {
+  background-color: $facebook-blue;
+}
+
+.bg-aad {
+  background-color: $facebook-blue;
+}
+
+.link-edit {
+  float: right;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:500);
+

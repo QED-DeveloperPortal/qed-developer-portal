@@ -1,0 +1,25 @@
+<!-- start custom footer snippets -->
+{%- if site.social_footer_links -%}
+<section class="social-link-container">
+    <div class="container">
+    {%- for footer_link in site.social_footer_links -%}
+        {%- if footer_link.url contains "://" -%}
+            {%- assign url = footer_link.url -%}
+        {%- else -%}
+            {%- assign url = footer_link.url | relative_url -%}
+        {%- endif -%}
+        <a class="social-icon" href="{{ url }}">
+            <span class="fa-stack fa-2x">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="{{ footer_link.icon | default: 'fas fa-link' }} fa-stack-1x fa-inverse"></i>
+            </span>
+        </a>
+    {%- endfor -%}
+        <span class="icon-end">
+            <span class="icon-label">Powered by</span>
+            <i class="fab fa-github fa-2x" style="font-size: 2rem;"></i>
+        </span>
+    </div>
+</section>
+{%- endif -%}
+<!-- end custom footer snippets -->

@@ -1,0 +1,11 @@
+---
+
+title: What is FIPS 140-2 Level 3?
+author: chatGpt
+categories: test
+tags: test
+date: 1900-01-01 12:00:00 AM
+---
+
+
+<p>FIPS 140-2 (Federal Information Processing Standard Publication 140-2) is a U.S. government standard that specifies security requirements for cryptographic modules used in protecting sensitive information. FIPS 140-2 Level 3 is one of the four levels of security that can be achieved under this standard.</p><p><br></p><p>FIPS 140-2 Level 3 requires that a cryptographic module meets all of the requirements of Level 2 and also provides physical tamper-evidence, which means that it must be designed to detect and respond to attempts to physically access the module's cryptographic keys or critical security parameters.</p><p><br></p><p>Specifically, to achieve FIPS 140-2 Level 3 certification, a cryptographic module must meet the following requirements:</p><p><br></p><p>&nbsp;&nbsp;&nbsp;The module must include tamper-evident coatings, seals, or similar measures to detect unauthorized attempts to access the module.</p><p><br></p><p>&nbsp;&nbsp;&nbsp;The module must have a tamper-responsive mechanism that deletes the keys and other sensitive information if tampering is detected.</p><p><br></p><p>&nbsp;&nbsp;&nbsp;The module must be designed to protect against environmental attacks, such as electromagnetic radiation or temperature-based attacks.</p><p><br></p><p>&nbsp;&nbsp;&nbsp;The module must meet additional requirements for key management, cryptographic algorithms, and other security features.</p><p><br></p><p>FIPS 140-2 Level 3 certification is often required for cryptographic modules used in government and commercial applications that involve sensitive information, such as financial transactions or healthcare data. Achieving FIPS 140-2 Level 3 certification provides a high level of assurance that a cryptographic module has been designed and tested to meet rigorous security standards.</p>

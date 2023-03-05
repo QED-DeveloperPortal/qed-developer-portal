@@ -1,0 +1,51 @@
+{% if entry.id %}
+  {% assign title = entry.title | markdownify | strip_html %}
+{% else %}
+  {% assign title = entry.title %}
+{% endif %}
+
+<article class="dev-link-container">
+  {% include posts-avatar.html %}
+  <div class="dev-info-container" tabindex="0">
+    {% if entry.image.thumbnail %}
+      {% assign entry_image = entry.image.thumbnail %}
+      {% unless entry_image contains '://' %}
+        {% assign entry_image = entry_image | relative_url %}
+      {% endunless %}
+      {% assign entry_image = entry_image | escape %}
+      <img class="entry-image u-photo" src="{{ entry_image }}" alt="">
+    {% endif %}
+    <div class="label-header">
+      {% if entry.link %}
+        <a class="u-bookmark-of" href="{{ entry.link }}">{{ title }}</a> <a href="{{ entry.url | relative_url }}" rel="bookmark"><span class="link-arrow">&rarr;</span></a>
+      {% else %}
+        <a href="{{ entry.url | relative_url }}" rel="bookmark">{{ title }}</a>
+      {% endif %}
+    </div>
+    <div class="label-sub-header">
+      {% if entry.author and site.data.authors[entry.author].name %}
+        {{ site.data.authors[entry.author].name }}, {% include entry-date.html %}
+      {% elsif entry.author %}
+        {{ entry.author }}, {% include entry-date.html %}
+      {% else %}
+        {% include entry-date.html %}
+      {% endif %}
+    </div>
+    {% if entry.tags.size > 0 %}
+      {% assign tags = entry.tags | sort %}
+      <ul class="page-taxonomies">
+        {% for tag in tags %}
+          {% if site.data.tags[tag].name %}
+          <li class="page-taxonomy {{ site.data.tags[tag].css-class }}">
+            {% if site.tag_archive_path %}
+              <a href="{{ tag | slugify | prepend: site.tag_archive_path | relative_url }}" title="{{ site.data.text[site.locale].pages_tagged | default: 'Pages tagged' }} {{ tag }}" rel="tag">{{ site.data.tags[tag].name }}</a>
+            {% else %}
+              {{ site.data.tags[tag].name }}
+            {% endif %}
+          </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</article>

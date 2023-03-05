@@ -1,0 +1,94 @@
+---
+layout: page
+---
+
+{{ content }}
+
+<div class="header-image">
+  {% assign hdr_image = '/images/dev-portal-header-half.png' | relative_url %}
+  <img src="{{ hdr_image }}" class="entry-feature-image u-photo" alt="Developer Portal" >
+</div>
+  
+</div>
+{% include home-mid-links.html %}
+
+<section class="content-container">
+  <div class="container">
+    <h1 style="margin-bottom: 32px;">Let's get started</h1>
+    <div class="quick-link-container">
+      <div class="quick-links">
+
+        <article mat-list-item class="quick-link-container">
+          <div class="avatar">
+            <span class="avatar-label"><i class="fas fa-thumbtack"></i></span>
+          </div>
+          <div class="info-container" tabindex="0">
+            {% assign url = '/guide' | relative_url %}
+            <a href="{{ url }}"><div class="label-header">Quick guide: The DevPortal</div></a>
+            <div class="label-sub-header">What it is and why it matters</div>
+            {% assign page = site.pages | where: 'title', 'Quick guide - The DevPortal' | first %}
+            <div class="page-tags-container">
+                {% include page-tags-assigned.html tags = page.tags %}
+            </div>
+          </div>
+        </article>
+        <article mat-list-item class="quick-link-container">
+          <div class="avatar">
+            <span class="avatar-label"><i class="fas fa-thumbtack"></i></span>
+          </div>
+          <div class="info-container" tabindex="0">
+            {% assign url = '/standards' | relative_url %}
+            <a href="{{ url }}"><div class="label-header">Developing for government</div></a>
+            <div class="label-sub-header">A primer on standards, policies and procedures required for government development</div>
+            {% assign page = site.pages | where: 'title', 'Developing for government' | first %}
+            <div class="page-tags-container">
+              {% include page-tags-assigned.html tags = page.tags %}
+            </div>
+          </div>
+        </article>
+        <article mat-list-item class="quick-link-container">
+          <div class="avatar">
+            <span class="avatar-label"><i class="fas fa-thumbtack"></i></span>
+          </div>
+          <div class="info-container" tabindex="0">
+            {% assign url = '/vendor-readiness' | relative_url %}
+            <a href="{{ url }}"><div class="label-header">Vendor readiness checklist</div></a>
+            <div class="label-sub-header">How to become a certified QED vendor</div>
+            {% assign page = site.pages | where: 'title', 'Vendor readiness checklist' | first %}
+            <div class="page-tags-container">
+              {% include page-tags-assigned.html tags = page.tags %}
+            </div>
+          </div>
+        </article>
+        <article mat-list-item class="quick-link-container">
+          <div class="avatar">
+            <span class="avatar-label"><i class="fas fa-thumbtack"></i></span>
+          </div>
+          <div class="info-container" tabindex="0">
+            {% assign url = '/branding' | relative_url %}
+            <a href="{{ url }}"><div class="label-header">Interface and branding guidelines</div></a>
+            <div class="label-sub-header">Common user-interface assets, accessibility requirements and UX best practices</div>
+            {% assign page = site.pages | where: 'title', 'Interface and branding guidelines' | first %}
+            <div class="page-tags-container">
+              {% include page-tags-assigned.html tags = page.tags %}
+            </div>
+          </div>
+        </article>
+        <article mat-list-item class="quick-link-container">
+          <div class="avatar">
+            <span class="avatar-label"><i class="fas fa-thumbtack"></i></span>
+          </div>
+          <div class="info-container" tabindex="0">
+            <div class="label-header">My first QED app</div>
+            <div class="label-sub-header">Download a scaffold web project, connect to a QED API then run a test harness</div>
+          </div>
+        </article>
+      </div>
+
+      <div class="dev-links">
+        <div class="dev-link-header">Latest developer news</div>
+          {% include posts-limit.html %}
+      </div>
+    </div>
+  </div>
+</section>
