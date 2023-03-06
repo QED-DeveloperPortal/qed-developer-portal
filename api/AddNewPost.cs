@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using DevPortal.Models;
 using Octokit;
+using Post = DevPortal.Models.Post;
 
 namespace DevPortal.Api
 {
@@ -27,10 +28,10 @@ namespace DevPortal.Api
             log.LogInformation("C# HTTP trigger function to add new post invoked.");
 
             //Using this for testing purpose 
-            //string jsonPayload = "{\"title\":\"Testing post with non-duplicate name2\",\"categories\":\"test\",\"tags\":\"test\",\"body\":\"<p><h1>Hello Test Post!</h1> </p><p><h2>Hello Test Post Again!</h2></p>\"}";
-            //byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
-            //MemoryStream stream = new MemoryStream(byteArray);
-            //req.Body = stream;
+            string jsonPayload = "{\"title\":\"Testing post on new repo1\",\"categories\":\"test\",\"tags\":\"test\",\"body\":\"<p><h1>Hello Test Post!</h1> </p><p><h2>Hello Test Post Again!</h2></p>\"}";
+            byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
+            MemoryStream stream = new MemoryStream(byteArray);
+            req.Body = stream;
 
             log.LogInformation("Incoming Request Body:" + req.Body);
             dynamic data = JsonConvert.DeserializeObject<Post>(await new StreamReader(req.Body).ReadToEndAsync());
@@ -54,7 +55,7 @@ namespace DevPortal.Api
           var postResponse = new PostResponse();
           var res = new RepositoryContentChangeSet();
 
-          var (owner, repoName, filePath, branch) = ("QED-DeveloperPortal", "qed-developerportal.github.io",
+          var (owner, repoName, filePath, branch) = ("QED-DeveloperPortal", "qed-developer-portal",
             _newPost.FilePath, "master");
 
           string token = System.Environment.GetEnvironmentVariable("GITHUB_TOKEN", EnvironmentVariableTarget.Process);
@@ -86,7 +87,7 @@ namespace DevPortal.Api
               postResponse.ResponseMessage =
                 "A new post could not be added. A post with same name already exists!";
             }
-            _logger.LogInformation($"** responseBody: {res}");
+            _logger.LogInformation($"** responseBody: {existingFile}");
 
           }
           catch (Octokit.NotFoundException)
@@ -102,6 +103,7 @@ namespace DevPortal.Api
               postResponse.IsSuccess = true;
               postResponse.ResponseMessage =
                 "A new post has been created successfully! The commit hash is " + res.Commit.Sha.Substring(0, 7) + ".";
+              _logger.LogInformation(postResponse.ResponseMessage);
             }
           }
           catch (Exception ex)
@@ -112,51 +114,8 @@ namespace DevPortal.Api
 
             _logger.LogInformation($"** Error occurred while adding a new post: {ex}");
           }
+
           return postResponse;;
         }
     }
-}
-
-namespace DevPortal.Models
-{
-  public class Post
-  {
-    public string? Title { get; set; }
-    public string? Categories { get; set; }
-    public string? Author { get; set; }
-    public string? Layout { get; set; }
-    public string? Tags { get; set; }
-    public string? Body { get; set; }
-
-    private string? _filePath;
-    public string? FilePath
-    {
-      get
-      {
-        // _filePath = String.Concat($"_posts/",DateTime.Now.Year,"/", DateTime.Now.ToString("yyyy-MM-dd"), "-", this.Title, ".md");
-        _filePath = String.Concat($"_posts/1900/1900-01-01-", this.Title, ".md");
-        return _filePath;
-      }
-    }
-
-    public string FrontMatterContent { get; set; }
-    public string MarkdownContent { get; set; }
-    public Post()
-    {
-    }
-  }
-
-  public class FrontMatter
-  {
-    public string? Title { get; set; }
-    public string? Categories { get; set; }
-    public string? Author { get; set; }
-    public string? Layout { get; set; }
-    public string? Tags { get; set; }
-  }
-  public class PostResponse
-  {
-    public bool IsSuccess { get; set; }
-    public string? ResponseMessage { get; set; }
-  }
 }

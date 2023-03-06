@@ -36,14 +36,14 @@ namespace DevPortal.Api.Helpers
       fmBuilder.AppendLine($"title: {title}");
       fmBuilder.AppendLine($"author: {author}");
 
-      //fmBuilder.AppendLine($"categories: {FormatList(categories)}");
-      //fmBuilder.AppendLine($"tags: {FormatList(tags)}");
-      //fmBuilder.AppendLine($"date: {DateTime.Now.Date}");
+      fmBuilder.AppendLine($"categories: {FormatList(categories)}");
+      fmBuilder.AppendLine($"tags: {FormatList(tags)}");
+      fmBuilder.AppendLine($"date: {DateTime.Now.Date}");
 
       //hard-coding these values for testing purpose
-      fmBuilder.AppendLine($"categories: test");
-      fmBuilder.AppendLine($"tags: test");
-      fmBuilder.AppendLine($"date: 1900-01-01 12:00:00 AM");
+      //fmBuilder.AppendLine($"categories: test");
+      //fmBuilder.AppendLine($"tags: test");
+      //fmBuilder.AppendLine($"date: 1900-01-01 12:00:00 AM");
 
       fmBuilder.AppendLine($"---\n\n");
 

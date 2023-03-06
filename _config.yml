@@ -21,7 +21,7 @@ title: "Developer Portal"
 description: "Queensland Education"
 baseurl: # the subpath of your site, e.g. "/blog"
 url: # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-posts-url: "https://github.com/QED-DeveloperPortal/qed-developerportal.github.io/blob/master"
+posts-url: "https://github.com/QED-DeveloperPortal/qed-developer-portal/blob/master"
 logo: "/images/dev-portal-header.png"
 date_format: "%B %-d, %Y"
 read_time: # reading time estimates, e.g. true
