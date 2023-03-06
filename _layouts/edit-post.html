@@ -223,23 +223,22 @@ href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.cs
                   .then(data => {
                       if (data)
                        {
-                        var mockdata = '{"title":"Testing edit-post on new repository","categories":"test-cat1, test-cat2","author":"chatGpt","layout":null,"tags":"test-tag1, test-tag2","filePath":"_posts/2023/2023-03-06-Testing post on new repo13.md","frontMatterContent":null,"date":"2023-03-06T00:00:00", "markdownContent":"<p><h1>Hello Test Post!</h1> </p><p><h2>Hello Test Post Again!</h2></p>"}';
-                        var postObj = JSON.parse(mockdata);//mockdata.json();
+                        //var mockdata = '{"title":"Testing edit-post on new repository","categories":"test-cat1, test-cat2","author":"chatGpt","layout":null,"tags":"test-tag1, test-tag2","filePath":"_posts/2023/2023-03-06-Testing post on new repo13.md","frontMatterContent":null,"date":"2023-03-06T00:00:00", "markdownContent":"<p><h1>Hello Test Post!</h1> </p><p><h2>Hello Test Post Again!</h2></p>"}';
+                        //var postObj = JSON.parse(mockdata);//mockdata.json();
                         
-                        console.log('data:' + data);
-                        console.log('postObj:' + postObj);
+                        console.log('data:' + data);                        
                                           
                         var quillContainer = editor.getElementsByClassName('ql-editor');
-                        quillContainer[0].innerHTML = postObj.markdownContent;
+                        quillContainer[0].innerHTML = data.markdownContent;
                         
                         const titleInput = document.getElementById("updatedTitle"); 
-                        titleInput.value = postObj.title;
+                        titleInput.value = data.title;
 
                         const categoriesInput = document.getElementById("updatedCategories");
-                        categoriesInput.value = postObj.categories;
+                        categoriesInput.value = data.categories;
 
                         const tagsInput = document.getElementById("updatedTags");
-                        tagsInput.value = postObj.tags;
+                        tagsInput.value = data.tags;
 
                       } else {
                         console.log("Error occurred on api call");
