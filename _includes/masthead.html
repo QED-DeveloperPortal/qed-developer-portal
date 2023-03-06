@@ -9,7 +9,6 @@
     <span class="header-sub">{{ site.title }}</span>
 
     <div id="auth-container" class="auth-container">
-      <span id="user-info"></div>
     </div>
 
     <!-- {% if site.logo %}
@@ -28,12 +27,13 @@
     {% endunless %}
     <script>
       const authContainer = document.getElementById("auth-container");
-      const userInfo = document.getElementById("user-info");
 
       fetch("/.auth/me")
           .then(response => response.json())
           .then(data => {
               if (data.clientPrincipal) {
+                const userInfo = document.createElement("span");
+                userInfo.classList.add('user-info');
                 userInfo.innerText = `Hello ${data.clientPrincipal.userDetails}`;
 
                 const signOutLink = document.createElement("a");
@@ -41,6 +41,7 @@
                 signOutLink.classList.add('auth-link');
                 signOutLink.href = "/.auth/logout";
                 authContainer.appendChild(signOutLink);
+                authContainer.appendChild(userInfo);
               } else {
                 const signInLink = document.createElement("a");
                 signInLink.innerText = "Sign in";
