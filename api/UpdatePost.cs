@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using api.Helpers;
 using DevPortal.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
