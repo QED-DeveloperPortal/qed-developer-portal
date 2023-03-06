@@ -1,7 +1,7 @@
 {
   "$schema": "https://aka.ms/azure/static-web-apps-cli/schema",
   "configurations": {
-    "qed-developerportal.github.io": {
+    "qed-developer-portal": {
       "appLocation": ".",
       "apiLocation": "api",
       "outputLocation": "_site",
