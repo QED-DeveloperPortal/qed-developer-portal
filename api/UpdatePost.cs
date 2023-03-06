@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using api.Helpers;
 using DevPortal.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -52,9 +53,10 @@ namespace DevPortal.Api
           var postResponse = new PostResponse();
           var res = new RepositoryContentChangeSet();
 
-          var (owner, repoName, branch) = ("QED-DeveloperPortal", "qed-developer-portal", "master");
-
           string token = System.Environment.GetEnvironmentVariable("GITHUB_TOKEN", EnvironmentVariableTarget.Process);
+          string repoName = System.Environment.GetEnvironmentVariable("GITHUB_REPO", EnvironmentVariableTarget.Process);
+          string branch = System.Environment.GetEnvironmentVariable("GITHUB_BRANCH", EnvironmentVariableTarget.Process);
+          string owner = System.Environment.GetEnvironmentVariable("GITHUB_OWNER", EnvironmentVariableTarget.Process);
 
           var gitHubClient = new GitHubClient(new Octokit.ProductHeaderValue("DevPortal"));
           gitHubClient.Credentials = new Credentials(token);
@@ -64,16 +66,17 @@ namespace DevPortal.Api
             //Check if a file with same name exists
             _logger.LogInformation("Checking if file with same name exists in the repository...");
 
-            var existingFile =
+            var existingFile = 
               await gitHubClient.Repository.Content.GetAllContentsByRef(owner, repoName, post.FilePath, branch);
 
-            if (existingFile != null)
-            {
+              if (existingFile != null)
+              {
               _logger.LogInformation("File with same name exists.");
 
               //To update existing post
               string commitMessage = $"Updated Content for {post.FilePath}";
-              res = await gitHubClient.Repository.Content.UpdateFile(owner, repoName, post.FilePath,
+              res = 
+                await gitHubClient.Repository.Content.UpdateFile(owner, repoName, post.FilePath,
                 new UpdateFileRequest(commitMessage, post.MarkdownContent, existingFile[0].Sha, branch));
 
               postResponse.IsSuccess = true;

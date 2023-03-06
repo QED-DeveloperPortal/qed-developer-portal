@@ -56,16 +56,17 @@ namespace DevPortal.Api
           var postResponse = new PostResponse();
           var res = new RepositoryContentChangeSet();
 
-          var (owner, repoName, filePath, branch) = ("QED-DeveloperPortal", "qed-developer-portal",
-            _newPost.FilePath, "master");
-
           string token = System.Environment.GetEnvironmentVariable("GITHUB_TOKEN", EnvironmentVariableTarget.Process);
+          string repoName = System.Environment.GetEnvironmentVariable("GITHUB_REPO", EnvironmentVariableTarget.Process);
+          string branch = System.Environment.GetEnvironmentVariable("GITHUB_BRANCH", EnvironmentVariableTarget.Process);
+          string owner = System.Environment.GetEnvironmentVariable("GITHUB_OWNER", EnvironmentVariableTarget.Process);
 
           var gitHubClient = new GitHubClient(new Octokit.ProductHeaderValue("DevPortal"));
           gitHubClient.Credentials = new Credentials(token);
 
           string fileContent = _newPost.MarkdownContent;
-          string commitMessage = $"First commit for {_newPost.FilePath}";
+          string filePath = _newPost.FilePath;
+          string commitMessage = $"First commit for { filePath }";
 
         try
           {

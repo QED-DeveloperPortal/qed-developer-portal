@@ -41,18 +41,17 @@ namespace DevPortal.Api
                 filePath = req.Query["filePath"];
               }
 
-              string jsonPayload = "{\"filePath\":\"_posts/2023/2023-03-06-Testing post on new repo13.md\"}";
-              byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
-              MemoryStream stream = new MemoryStream(byteArray);
-              req.Body = stream;
+              //string jsonPayload = "{\"filePath\":\"_posts/2023/2023-03-06-Testing post on new repo13.md\"}";
+              //byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
+              //MemoryStream stream = new MemoryStream(byteArray);
+              //req.Body = stream;
 
-              string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-              dynamic data = JsonConvert.DeserializeObject(requestBody);
-              filePath = data.filePath;
+              //string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+              //dynamic data = JsonConvert.DeserializeObject(requestBody);
+              //filePath = data.filePath;
 
               postResponse = await GetPostFromRepository(filePath);
 
-              
               post = MarkdownPostParser.ParseMarkdownContent(postResponse.ResponseMessage);
 
               Console.WriteLine(post);
@@ -75,12 +74,13 @@ namespace DevPortal.Api
         {
           var postResponse = new PostResponse();
 
-          var (owner, repoName, branch) = ("QED-DeveloperPortal", "qed-developer-portal", "master");
           string token = System.Environment.GetEnvironmentVariable("GITHUB_TOKEN", EnvironmentVariableTarget.Process);
+          string repoName = System.Environment.GetEnvironmentVariable("GITHUB_REPO", EnvironmentVariableTarget.Process);
+          string owner = System.Environment.GetEnvironmentVariable("GITHUB_OWNER", EnvironmentVariableTarget.Process);
 
           var gitHubClient = new GitHubClient(new Octokit.ProductHeaderValue("DevPortal"));
           gitHubClient.Credentials = new Credentials(token);
-
+  
           try
           {
             _logger.LogInformation("Checking if the file exists in the repository...");
