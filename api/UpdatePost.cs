@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using api.Helpers;
 using DevPortal.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -36,18 +37,13 @@ namespace DevPortal.Api
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject<Post>(requestBody);
-            //name = name ?? data?.name;
 
             Post updatedPost = MarkdownPostParser.GenerateMarkdownContent(data);
 
-             log.LogInformation("Incoming Request Body:" + req.Body);
+            log.LogInformation("Incoming Request Body:" + req.Body);
 
             var postResponse = await UpdatePostInRepository(updatedPost);
-              //log.LogInformation("Response after trying to get a post: ", postResponse.ResponseMessage);
-
-            /*string responseMessage = string.IsNullOrEmpty(name)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";*/
+            log.LogInformation("Response after calling UpdatePost: ", postResponse.ResponseMessage);
 
             return new OkObjectResult(postResponse.ResponseMessage);
         }
@@ -57,9 +53,10 @@ namespace DevPortal.Api
           var postResponse = new PostResponse();
           var res = new RepositoryContentChangeSet();
 
-          var (owner, repoName, branch) = ("QED-DeveloperPortal", "qed-developerportal.github.io", "master");
-
           string token = System.Environment.GetEnvironmentVariable("GITHUB_TOKEN", EnvironmentVariableTarget.Process);
+          string repoName = System.Environment.GetEnvironmentVariable("GITHUB_REPO", EnvironmentVariableTarget.Process);
+          string branch = System.Environment.GetEnvironmentVariable("GITHUB_BRANCH", EnvironmentVariableTarget.Process);
+          string owner = System.Environment.GetEnvironmentVariable("GITHUB_OWNER", EnvironmentVariableTarget.Process);
 
           var gitHubClient = new GitHubClient(new Octokit.ProductHeaderValue("DevPortal"));
           gitHubClient.Credentials = new Credentials(token);
@@ -68,32 +65,34 @@ namespace DevPortal.Api
           {
             //Check if a file with same name exists
             _logger.LogInformation("Checking if file with same name exists in the repository...");
-            var existingFile =
+
+            var existingFile = 
               await gitHubClient.Repository.Content.GetAllContentsByRef(owner, repoName, post.FilePath, branch);
 
-            if (existingFile != null)
-            {
+              if (existingFile != null)
+              {
               _logger.LogInformation("File with same name exists.");
 
-
               //To update existing post
-              //commitMessage = $"Update commit for {post.FilePath}";
               string commitMessage = $"Updated Content for {post.FilePath}";
-              var updateChangeSet = await gitHubClient.Repository.Content.UpdateFile(owner, repoName, post.FilePath,
+              res = 
+                await gitHubClient.Repository.Content.UpdateFile(owner, repoName, post.FilePath,
                 new UpdateFileRequest(commitMessage, post.MarkdownContent, existingFile[0].Sha, branch));
 
               postResponse.IsSuccess = true;
               postResponse.ResponseMessage =
-                "File has been updated in the repository! The commit has is " + updateChangeSet.Commit.Sha.Substring(0, 7) + ".";
-            }
+                "File has been updated in the repository! The commit hash is " + res.Commit.Sha.Substring(0, 7) + ".";
 
+              _logger.LogError($"** File updated in the repo. Commit hash: {res.Commit.Sha.Substring(0, 7)}");
+            }
             _logger.LogInformation($"** responseBody: {res}");
           }
           catch (Octokit.NotFoundException)
           {
             postResponse.IsSuccess = false;
             postResponse.ResponseMessage = "File not found. Please check if the file exists on the repository.";
-          }
+            _logger.LogInformation($"** File not found in the repo: {res}");
+}
           catch (Exception ex)
           {
             Console.WriteLine(ex);

@@ -3,6 +3,7 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using DevPortal.Api.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
@@ -10,8 +11,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using DevPortal.Models;
-using Microsoft.Graph;
-using Newtonsoft.Json.Linq;
 using Octokit;
 using Post = DevPortal.Models.Post;
 
@@ -30,69 +29,70 @@ namespace DevPortal.Api
             _logger = log;
             log.LogInformation("C# HTTP trigger function processed a GetPost request.");
 
-            string filePath;
+            string filePath = "";
+            var postResponse = new PostResponse();
+            Post post = new Post();
 
-            if (req != null && !String.IsNullOrEmpty(req.Query["filePath"]))
+      try
             {
-              filePath = req.Query["filePath"];
-}
-            else
-            {
-              filePath = "_posts/2023/2023-03-02-configure-azure-keyvault.md";
+              if (req != null && !String.IsNullOrEmpty(req.Query["filePath"]))
+              {
+                log.LogInformation("Incoming Request Body:" + req.Body);
+                filePath = req.Query["filePath"];
+              }
+
+              //string jsonPayload = "{\"filePath\":\"_posts/2023/2023-03-06-Testing post on new repo13.md\"}";
+              //byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
+              //MemoryStream stream = new MemoryStream(byteArray);
+              //req.Body = stream;
+
+              //string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+              //dynamic data = JsonConvert.DeserializeObject(requestBody);
+              //filePath = data.filePath;
+
+              postResponse = await GetPostFromRepository(filePath);
+
+              post = MarkdownPostParser.ParseMarkdownContent(postResponse.ResponseMessage);
+
+              Console.WriteLine(post);
+
+              log.LogInformation("Response after calling GetPost: ", postResponse.ResponseMessage);
             }
-            
+            catch (Exception ex)
+            {
+              Console.WriteLine(ex);
+              postResponse.IsSuccess = false;
+              postResponse.ResponseMessage = "An error occurred while trying to get a post. Please check the logs for more details. Error: " + ex;
+              log.LogInformation(postResponse.ResponseMessage);
+            }
 
-            log.LogInformation("Incoming Request Body:" + req.Body);
-
-            /*string jsonPayload = "{\"filePath\":\"_posts/2023/2023-03-02-configure-azure-keyvault.md\"}";
-            byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
-            MemoryStream stream = new MemoryStream(byteArray);
-            req.Body = stream;
-
-            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            //name = name ?? data?.name;
-            filePath = data.filePath;// "_posts/2023/2023-03-02-configure-azure-keyvault.md";*/
-
-            var postResponse = await GetPostFromRepository(filePath);
-            log.LogInformation("Response after trying to get a post: ", postResponse.ResponseMessage);
-
-            string responseMessage = string.IsNullOrEmpty(filePath)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {filePath}. This HTTP triggered function executed successfully.";
-
-            return new OkObjectResult(postResponse.ResponseMessage);
+            return new OkObjectResult(post);
         }
 
-        
 
         private static async Task<PostResponse> GetPostFromRepository(string filePath)
         {
           var postResponse = new PostResponse();
-          var res = new RepositoryContentChangeSet();
-
-          var (owner, repoName, branch) = ("QED-DeveloperPortal", "qed-developerportal.github.io", "master");
 
           string token = System.Environment.GetEnvironmentVariable("GITHUB_TOKEN", EnvironmentVariableTarget.Process);
+          string repoName = System.Environment.GetEnvironmentVariable("GITHUB_REPO", EnvironmentVariableTarget.Process);
+          string owner = System.Environment.GetEnvironmentVariable("GITHUB_OWNER", EnvironmentVariableTarget.Process);
 
           var gitHubClient = new GitHubClient(new Octokit.ProductHeaderValue("DevPortal"));
           gitHubClient.Credentials = new Credentials(token);
-
-          string commitMessage = $"Retrieved Content for { filePath }";
-
+  
           try
           {
-            _logger.LogInformation("Checking if file exists in the repository...");
-            var existingFile =
+            _logger.LogInformation("Checking if the file exists in the repository...");
+            var res =
               await gitHubClient.Repository.Content.GetAllContents(owner, repoName, filePath);
 
-            if (existingFile != null)
+            if (res != null)
             {
               _logger.LogInformation("File with same name exists.");
 
-              string content = existingFile[0].Content;
-              string sha = existingFile[0].Sha;
-
+              string content = res[0].Content;
+              string sha = res[0].Sha;
 
               //To update existing post
               /*commitMessage = $"Update commit for {_newPost.FilePath}";
@@ -100,21 +100,19 @@ namespace DevPortal.Api
                new UpdateFileRequest(commitMessage, fileContent, existingFile[0].Sha, branch));*/
 
               postResponse.IsSuccess = true;
-              postResponse.ResponseMessage =
-                "An existing file ( " + sha + ") found in the repository and can be edited! \n\n " + content;
+              postResponse.ResponseMessage = content;
             }
             _logger.LogInformation($"** responseBody: {res}");
 
-            
           }
           catch (Exception ex)
           {
             postResponse.IsSuccess = false;
             postResponse.ResponseMessage = "The file could not be retrieved. Check for error logs. Exception: " + ex.Message;
-            _logger.LogInformation("The file could not be retrieved.Check for error logs. Exception: " + ex.Message);
 
+            _logger.LogInformation(" **Error occurred while getting a post" + ex );
           }
           return postResponse;
-}
+        }
      }
 }

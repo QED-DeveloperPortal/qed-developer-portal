@@ -194,8 +194,7 @@ href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.cs
          }
      });
 
-     const editor = document.getElementById("updateEditor");
-     const titleInput = document.getElementById("updatedTitle");   
+     const editor = document.getElementById("updateEditor");      
      
 </script>
 
@@ -216,21 +215,34 @@ href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.cs
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-			              "Accept": "application/json"
+			        "Accept": "application/json"
                 },              
             };
     fetch(gurl, gfetchOptions)
                   .then(response => response.json())
                   .then(data => {
-                      if (data) {
-                        console.log('Response:' + data);
+                      if (data)
+                       {
+                        var mockdata = '{"title":"Testing edit-post on new repository","categories":"test-cat1, test-cat2","author":"chatGpt","layout":null,"tags":"test-tag1, test-tag2","filePath":"_posts/2023/2023-03-06-Testing post on new repo13.md","frontMatterContent":null,"date":"2023-03-06T00:00:00", "markdownContent":"<p><h1>Hello Test Post!</h1> </p><p><h2>Hello Test Post Again!</h2></p>"}';
+                        var postObj = JSON.parse(mockdata);//mockdata.json();
+                        
+                        console.log('data:' + data);
+                        console.log('postObj:' + postObj);
                                           
                         var quillContainer = editor.getElementsByClassName('ql-editor');
-                        quillContainer[0].innerHTML = data;
+                        quillContainer[0].innerHTML = postObj.markdownContent;
+                        
+                        const titleInput = document.getElementById("updatedTitle"); 
+                        titleInput.value = postObj.title;
 
-                        titleInput.innerText = "Update Title";
+                        const categoriesInput = document.getElementById("updatedCategories");
+                        categoriesInput.value = postObj.categories;
+
+                        const tagsInput = document.getElementById("updatedTags");
+                        tagsInput.value = postObj.tags;
+
                       } else {
-                        console.log("Error occrred on api call");
+                        console.log("Error occurred on api call");
                       }
                   });
      console.log('api/GetPost call complete!');
@@ -250,7 +262,7 @@ href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.cs
 			        "Accept": "application/json"
                 },
                 body: formDataJsonString
-            };
+            };           
 
             const response = await fetch(update_url, ufetchOptions);
 
