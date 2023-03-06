@@ -92,7 +92,7 @@ namespace DevPortal.Api
             postResponse.IsSuccess = false;
             postResponse.ResponseMessage = "File not found. Please check if the file exists on the repository.";
             _logger.LogInformation($"** File not found in the repo: {res}");
-}
+          }
           catch (Exception ex)
           {
             Console.WriteLine(ex);
