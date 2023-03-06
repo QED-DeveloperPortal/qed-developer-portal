@@ -27,6 +27,7 @@ namespace DevPortal.Models
     }
     public string FrontMatterContent { get; set; }
     public string MarkdownContent { get; set; }
+    public DateTime Date { get; set; }
     public Post()
     {
     }

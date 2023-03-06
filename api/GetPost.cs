@@ -3,6 +3,7 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using DevPortal.Api.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
@@ -30,26 +31,32 @@ namespace DevPortal.Api
 
             string filePath = "";
             var postResponse = new PostResponse();
+            Post post = new Post();
 
-            try
+      try
             {
               if (req != null && !String.IsNullOrEmpty(req.Query["filePath"]))
               {
                 log.LogInformation("Incoming Request Body:" + req.Body);
                 filePath = req.Query["filePath"];
-
               }
 
-              //string jsonPayload = "{\"filePath\":\"_posts/2023/2023-03-02-configure-azure-keyvault.md\"}";
-              //byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
-              //MemoryStream stream = new MemoryStream(byteArray);
-              //req.Body = stream;
+              string jsonPayload = "{\"filePath\":\"_posts/2023/2023-03-06-Testing post on new repo13.md\"}";
+              byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
+              MemoryStream stream = new MemoryStream(byteArray);
+              req.Body = stream;
 
-              //string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-              //dynamic data = JsonConvert.DeserializeObject(requestBody);
-              //filePath = data.filePath;
+              string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+              dynamic data = JsonConvert.DeserializeObject(requestBody);
+              filePath = data.filePath;
 
               postResponse = await GetPostFromRepository(filePath);
+
+              
+              post = MarkdownPostParser.ParseMarkdownContent(postResponse.ResponseMessage);
+
+              Console.WriteLine(post);
+
               log.LogInformation("Response after calling GetPost: ", postResponse.ResponseMessage);
             }
             catch (Exception ex)
@@ -60,7 +67,7 @@ namespace DevPortal.Api
               log.LogInformation(postResponse.ResponseMessage);
             }
 
-            return new OkObjectResult(postResponse.ResponseMessage);
+            return new OkObjectResult(post);
         }
 
 

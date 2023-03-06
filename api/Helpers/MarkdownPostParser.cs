@@ -26,6 +26,98 @@ namespace DevPortal.Api.Helpers
     }
 
     /// <summary>
+    /// Parse markdown content into Post object
+    /// </summary>
+    /// <param name="markdownContent"></param>
+    /// <returns></returns>
+    public static Post ParseMarkdownContent(string content)
+    {
+     // content =
+     //   $"---\ntitle: My Blog Post\nauthor: John Doe\ntags: [test-tag1, test-tag2]\ncategories: [getting-started, technology]\ndate: 2021-01-01\n---\n# My Blog Post\nThis is the content of my blog post.";
+
+      Post post = new Post();
+
+      // ensure markdown contains a header component...
+      if (content.IndexOf("---") == -1)
+
+      if (content.IndexOf("---") == content.LastIndexOf("---"))
+        return post;
+
+      //---
+      //layout: post
+      //title:  "Welcome to Jekyll!"
+      //date: 2022 - 11 - 29 13:02:18 + 1000
+      //category: [cloud, tech]
+      //tags: [test,test2]
+      //author: chatgpt
+      //---
+
+      // split header and markdown content - parse the header as a Json object...
+      var header = content.Substring(0, content.LastIndexOf("---") + 3);
+      post.MarkdownContent = content.Substring(content.LastIndexOf("---") + 3).TrimEnd('-');
+      post.Body = content;
+
+      try
+      {
+        // get the Jekyll header...
+        header = $"{{{header[3..^3]}}}"
+          .TrimStart('{')
+          .TrimEnd('}');
+
+        var headerAttributes = header.Split('\n');
+
+        foreach (var line in headerAttributes)
+        {
+          if (!string.IsNullOrEmpty(line) && line != "\r")
+          {
+            var key = line.Substring(0, line.IndexOf(":"));
+            var value = line.Substring(line.IndexOf(":") + 1).Trim();
+
+            switch (key)
+            {
+              case "layout":
+                post.Layout = value;
+                break;
+
+              case "title":
+                post.Title = value
+                  .Trim('"');
+                break;
+
+              case "date":
+                post.Date = DateTime.Parse(value);
+                break;
+
+              case "categories":
+                post.Categories = value
+                  .TrimStart('[')
+                  .TrimEnd(']');
+                break;
+
+              case "tags":
+                post.Tags = value
+                  .TrimStart('[')
+                  .TrimEnd(']');
+                break;
+
+              case "author":
+                post.Author = value;
+                break;
+            }
+          }
+        }
+      }
+      catch (Exception ex)
+      {
+        Console.WriteLine(ex.ToString());
+        return post;
+      }
+
+      return post;
+
+    }
+    
+    /// <summary>
     /// Generate the front matter based on the provided information
     /// </summary>
     /// <param name="layout"></param>
@@ -75,7 +167,9 @@ namespace DevPortal.Api.Helpers
         sb.AppendLine($"- {item.Trim()}");
       }
 
-      return sb.ToString();
+      string formattedList = String.Concat("[", items.TrimEnd(',').Trim(), "]");
+
+      return formattedList; //sb.ToString();
     }
 
   }
