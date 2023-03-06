@@ -40,14 +40,14 @@ namespace DevPortal.Api
 
               }
 
-              string jsonPayload = "{\"filePath\":\"_posts/2023/2023-03-02-configure-azure-keyvault.md\"}";
-              byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
-              MemoryStream stream = new MemoryStream(byteArray);
-              req.Body = stream;
+              //string jsonPayload = "{\"filePath\":\"_posts/2023/2023-03-02-configure-azure-keyvault.md\"}";
+              //byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
+              //MemoryStream stream = new MemoryStream(byteArray);
+              //req.Body = stream;
 
-              string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-              dynamic data = JsonConvert.DeserializeObject(requestBody);
-              filePath = data.filePath;
+              //string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+              //dynamic data = JsonConvert.DeserializeObject(requestBody);
+              //filePath = data.filePath;
 
               postResponse = await GetPostFromRepository(filePath);
               log.LogInformation("Response after calling GetPost: ", postResponse.ResponseMessage);

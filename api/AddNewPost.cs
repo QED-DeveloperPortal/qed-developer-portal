@@ -28,10 +28,10 @@ namespace DevPortal.Api
             log.LogInformation("C# HTTP trigger function to add new post invoked.");
 
             //Using this for testing purpose 
-            string jsonPayload = "{\"title\":\"Testing post on new repo1\",\"categories\":\"test\",\"tags\":\"test\",\"body\":\"<p><h1>Hello Test Post!</h1> </p><p><h2>Hello Test Post Again!</h2></p>\"}";
-            byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
-            MemoryStream stream = new MemoryStream(byteArray);
-            req.Body = stream;
+            //string jsonPayload = "{\"title\":\"Testing post on new repo1\",\"categories\":\"test\",\"tags\":\"test\",\"body\":\"<p><h1>Hello Test Post!</h1> </p><p><h2>Hello Test Post Again!</h2></p>\"}";
+            //byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
+            //MemoryStream stream = new MemoryStream(byteArray);
+            //req.Body = stream;
 
             log.LogInformation("Incoming Request Body:" + req.Body);
             dynamic data = JsonConvert.DeserializeObject<Post>(await new StreamReader(req.Body).ReadToEndAsync());
@@ -50,6 +50,7 @@ namespace DevPortal.Api
             return new OkObjectResult(postResponse.ResponseMessage);
         }
 
+    
         private static async Task<PostResponse> AddNewPostToRepository()
         {
           var postResponse = new PostResponse();

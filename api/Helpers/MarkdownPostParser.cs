@@ -10,6 +10,11 @@ namespace DevPortal.Api.Helpers
   public static class MarkdownPostParser
   {
 
+    /// <summary>
+    /// Get markdown content for the post
+    /// </summary>
+    /// <param name="post"></param>
+    /// <returns></returns>
     public static Post GenerateMarkdownContent(Post post)
     {
       StringBuilder sb = new StringBuilder();
@@ -20,6 +25,15 @@ namespace DevPortal.Api.Helpers
       return post;
     }
 
+    /// <summary>
+    /// Generate the front matter based on the provided information
+    /// </summary>
+    /// <param name="layout"></param>
+    /// <param name="title"></param>
+    /// <param name="author"></param>
+    /// <param name="categories"></param>
+    /// <param name="tags"></param>
+    /// <returns></returns>
     private static string GenerateFrontMatter(string layout, string title, string author, string categories, string tags)
     {
       StringBuilder fmBuilder = new StringBuilder();
