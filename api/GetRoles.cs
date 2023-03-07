@@ -54,7 +54,7 @@ namespace DevPortal.Api
             {
                 log.LogInformation($"* userId '{userId}' found in the requestBody");
 
-                GraphServiceClient graphClient = GetAuthenticatedGraphClient();
+                GraphServiceClient graphClient = GetAuthenticatedGraphClient(log);
 
                 var graphResult = await graphClient.Users[userId].MemberOf
                     .Request()
@@ -80,31 +80,39 @@ namespace DevPortal.Api
             return new OkObjectResult(response);
         }
 
-        private static GraphServiceClient GetAuthenticatedGraphClient()
+        private static GraphServiceClient GetAuthenticatedGraphClient(ILogger log)
         {
-            var authenticationProvider = CreateAuthorizationProvider();
+            var authenticationProvider = CreateAuthorizationProvider(log);
             GraphServiceClient = new GraphServiceClient(authenticationProvider);
 
             return GraphServiceClient;
         }
 
-        private static IAuthenticationProvider CreateAuthorizationProvider()
+        private static IAuthenticationProvider CreateAuthorizationProvider(ILogger log)
         {
-            var clientId = System.Environment.GetEnvironmentVariable("AADB2C_PROVIDER_CLIENT_ID", EnvironmentVariableTarget.Process);
-            var clientSecret = System.Environment.GetEnvironmentVariable("AADB2C_PROVIDER_CLIENT_SECRET", EnvironmentVariableTarget.Process);
-            var tenantId = System.Environment.GetEnvironmentVariable("AADB2C_PROVIDER_TENANT_ID", EnvironmentVariableTarget.Process);
-            var authority = $"https://login.microsoftonline.com/{tenantId}/v2.0";
+            try
+            {
+                var clientId = System.Environment.GetEnvironmentVariable("AADB2C_PROVIDER_CLIENT_ID", EnvironmentVariableTarget.Process);
+                var clientSecret = System.Environment.GetEnvironmentVariable("AADB2C_PROVIDER_CLIENT_SECRET", EnvironmentVariableTarget.Process);
+                var tenantId = System.Environment.GetEnvironmentVariable("AADB2C_PROVIDER_TENANT_ID", EnvironmentVariableTarget.Process);
+                var authority = $"https://login.microsoftonline.com/{tenantId}/v2.0";
 
-            //this specific scope means that application will default to what is defined in the application registration rather than using dynamic scopes
-            List<string> scopes = new List<string>();
-            scopes.Add("https://graph.microsoft.com/.default");
+                //this specific scope means that application will default to what is defined in the application registration rather than using dynamic scopes
+                List<string> scopes = new List<string>();
+                scopes.Add("https://graph.microsoft.com/.default");
 
-            var cca = ConfidentialClientApplicationBuilder.Create(clientId)
-                                    .WithAuthority(authority)
-                                    .WithClientSecret(clientSecret)
-                                    .Build();
-            
-            return new MsalAuthenticationProvider(cca, scopes.ToArray());
+                var cca = ConfidentialClientApplicationBuilder.Create(clientId)
+                                        .WithAuthority(authority)
+                                        .WithClientSecret(clientSecret)
+                                        .Build();
+                
+                return new MsalAuthenticationProvider(cca, scopes.ToArray());
+            }
+            catch(Exception e)
+            {
+                log.LogError(e, "Exception encountered attempting to create the Authorization provider.");
+                throw;
+            }
         }
     }
 
