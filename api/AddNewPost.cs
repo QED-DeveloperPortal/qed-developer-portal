@@ -28,7 +28,7 @@ namespace DevPortal.Api
             log.LogInformation("C# HTTP trigger function to add new post invoked.");
 
             //Using this for testing purpose
-            //string jsonPayload = "{\"title\":\"Testing add-new-post 1\",\"categories\":\"test-cat1, test-cat2\",\"tags\":\"test-tag1, test-tag2\",\"body\":\"<p><h1>Hello Test Post!</h1> </p><p><h2>Hello Test Post Again!</h2></p>\"}";
+            //string jsonPayload = "{\"title\":\"Testing add-new-post 2\",\"categories\":\"test-cat1, test-cat2\",\"tags\":\"test-tag1, test-tag2\",\"body\":\"<p><h1>Hello Test Post!</h1> </p><p><h2>Hello Test Post Again!</h2></p>\"}";
             //byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
             //MemoryStream stream = new MemoryStream(byteArray);
             //req.Body = stream;
@@ -42,7 +42,7 @@ namespace DevPortal.Api
 
             log.LogInformation("Content of new post:" + _newPost.MarkdownContent);
 
-            //Call GitHub API function to upload/add this file to the github repo branch 'new-posts'
+            //Call GitHub API function to upload/add this file to the github repo branch
             var postResponse = await AddNewPostToRepository();
             log.LogInformation("Response after trying to add new post: ", postResponse.ResponseMessage);
 
@@ -80,11 +80,6 @@ namespace DevPortal.Api
             if (existingFile != null)
             {
               _logger.LogInformation("File with same name exists.");
-
-              //To update existing post
-              /*commitMessage = $"Update commit for {_newPost.FilePath}";
-              var updateChangeSet = await gitHubClient.Repository.Content.UpdateFile(owner, repoName, filePath,
-               new UpdateFileRequest(commitMessage, fileContent, existingFile[0].Sha, branch));*/
 
               postResponse.IsSuccess = false;
               postResponse.ResponseMessage =
