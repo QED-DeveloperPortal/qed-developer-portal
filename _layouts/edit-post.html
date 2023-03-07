@@ -299,12 +299,19 @@ href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.cs
                 console.log( { responseData });                
                 
                 const goToPostsLink = document.createElement("a");
-                goToPostsLink.innerText = "Go to Posts to view updated post.";               
+                goToPostsLink.innerText = "here";               
                 goToPostsLink.href = "/posts/";    
+
+                const postsSpan1 = document.createElement("span");
+                postsSpan1.value = "Your updated post will appear ";
+
+                const postsSpan2 = document.createElement("span");
+                postsSpan2.value = " shortly. ";
                             
                 const reviewContainer = document.getElementById("review-container");  
-                reviewContainer.innerHTML = responseData;     
+                reviewContainer.appendChild(postsSpan1);
                 reviewContainer.appendChild(goToPostsLink);   
+                reviewContainer.appendChild(postsSpan2);
             }
             catch(error){
                 console.error(error);

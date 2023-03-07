@@ -245,11 +245,19 @@ layout: page
                 const previewContainer = document.getElementById("preview-container");  
                 
                 const goToPostsLink = document.createElement("a");
-                goToPostsLink.innerText = "Go to Posts";               
-                goToPostsLink.href = "/posts/";                
+                goToPostsLink.innerText = "here";               
+                goToPostsLink.href = "/posts/";    
                 
-                previewContainer.innerHTML = responseData;     
-                previewContainer.appendChild(goToPostsLink);          
+                const postsSpan1 = document.createElement("span");
+                postsSpan1.value = "Your post will appear ";
+
+                const postsSpan2 = document.createElement("span");
+                postsSpan2.value = " shortly. ";
+                
+                previewContainer.innerHTML = responseData;  
+                previewContainer.appendChild(postsSpan1);
+                previewContainer.appendChild(goToPostsLink);   
+                previewContainer.appendChild(postsSpan2);
 
             }
             catch(error){
