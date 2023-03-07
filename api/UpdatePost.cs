@@ -27,9 +27,8 @@ namespace DevPortal.Api
            _logger = log;
             log.LogInformation("C# HTTP trigger function processed an UpdatePost request.");
 
-            //string name = req.Query["name"];
             //Using this for testing purpose 
-            //string jsonPayload = "{\"title\":\"Testing post with non-duplicate name2\",\"categories\":\"test\",\"tags\":\"test\",\"body\":\"<p><h1>Hello Test Post!</h1> </p><p><h2>Hello Test Post Again!</h2></p>\"}";
+            //string jsonPayload = "{\"title\":\"Test Post\",\"categories\":\"test\",\"tags\":\"test\",\"date\":\"1900-01-01 12:00:00 AM\",\"filePath\":\"/_posts/1900/1900-01-01-Test%20Post.md\",\"body\":\"<p><h1>Hello Test Post!</h1> </p><p><h2>Hello Test Post Again!</h2></p>\"}";
             //byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
             //MemoryStream stream = new MemoryStream(byteArray);
             //req.Body = stream;
