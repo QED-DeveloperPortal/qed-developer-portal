@@ -2,6 +2,8 @@ using System;
 using System.Text;
 using Microsoft.Graph;
 using Post = DevPortal.Models.Post;
+using DevPortal.Models;
+
 
 namespace DevPortal.Api.Helpers
 {
