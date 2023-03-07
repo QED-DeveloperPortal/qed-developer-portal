@@ -1,6 +1,9 @@
 using System;
 using System.Text;
+using Microsoft.Graph;
+using Post = DevPortal.Models.Post;
 using DevPortal.Models;
+
 
 namespace DevPortal.Api.Helpers
 {
@@ -19,6 +22,9 @@ namespace DevPortal.Api.Helpers
       post.FrontMatterContent = GenerateFrontMatter(post.Layout, post.Title, post.Author, post.Categories, post.Tags, post.Date);
       post.MarkdownContent = $"{post.FrontMatterContent}{post.Body}";
 
+      if(String.IsNullOrEmpty(post.FilePath))
+        post.FilePath = String.Concat($"_posts/", post.Date, "/", post.Date.ToString("yyyy-MM-dd"), "-", post.Title, ".md");
+
       return post;
     }
 
@@ -29,9 +35,6 @@ namespace DevPortal.Api.Helpers
     /// <returns></returns>
     public static Post ParseMarkdownContent(string content)
     {
-     // content =
-     //   $"---\ntitle: My Blog Post\nauthor: John Doe\ntags: [test-tag1, test-tag2]\ncategories: [getting-started, technology]\ndate: 2021-01-01\n---\n# My Blog Post\nThis is the content of my blog post.";
-
       Post post = new Post();
 
       // ensure markdown contains a header component...
@@ -126,13 +129,11 @@ namespace DevPortal.Api.Helpers
         fmBuilder.AppendLine($"---\n");
       else
         fmBuilder.AppendLine($"---\nlayout: {layout}");
-
       fmBuilder.AppendLine($"title: {title}");
       fmBuilder.AppendLine($"author: {author}");
-
       fmBuilder.AppendLine($"categories: {FormatList(categories)}");
       fmBuilder.AppendLine($"tags: {FormatList(tags)}");
-      fmBuilder.AppendLine($"date: {date}");
+      fmBuilder.AppendLine($"date: { date }");
 
       fmBuilder.AppendLine($"---\n\n");
 

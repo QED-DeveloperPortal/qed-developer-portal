@@ -12,17 +12,17 @@ namespace DevPortal.Models
     public string Layout { get; set; }
     public string Tags { get; set; }
     public string Body { get; set; }
-
-    private string _filePath;
-    public string FilePath
-    {
-      get => _filePath = String.Concat($"_posts/", this.Date.Year, "/", this.Date.ToString("yyyy-MM-dd"), "-", this.Title, ".md");
-      set => _filePath = value;
-    }
+    public string FilePath { get; set; }
     
     public string FrontMatterContent { get; set; }
     public string MarkdownContent { get; set; }
-    public DateTime Date { get; set; }
+
+    private DateTime _date;
+    public DateTime Date
+    {
+      get => (_date == DateTime.MinValue ? DateTime.Now : _date);
+      set => _date = value;
+    }
   }
 
   public class FrontMatter
