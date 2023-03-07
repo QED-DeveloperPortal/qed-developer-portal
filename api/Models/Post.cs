@@ -12,7 +12,6 @@ namespace DevPortal.Models
     public string Layout { get; set; }
     public string Tags { get; set; }
     public string Body { get; set; }
-
     public string FilePath { get; set; }
     
     public string FrontMatterContent { get; set; }
