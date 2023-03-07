@@ -28,7 +28,7 @@ namespace DevPortal.Api
             log.LogInformation("C# HTTP trigger function processed an UpdatePost request.");
 
             //Using this for testing purpose 
-            //string jsonPayload = "{\"title\":\"Test Post\",\"categories\":\"test\",\"tags\":\"test\",\"date\":\"1900-01-01 12:00:00 AM\",\"filePath\":\"/_posts/1900/1900-01-01-Test%20Post.md\",\"body\":\"<p><h1>Hello Test Post!</h1> </p><p><h2>Hello Test Post Again!</h2></p>\"}";
+            //string jsonPayload = "{\"title\":\"Testing post on new repo1\",\"categories\":\"test\",\"tags\":\"another-test\",\"filePath\":\"_posts/2023/2023-03-06-Testing post on new repo1.md\",\"body\":\"<p></p><p><br></p><h1>Hello Test Post!</h1><p> </p><p><br></p><p><br></p><h2>Hello Test Post Again!</h2><p><br></p><p></p><h3>Matt jumping in...</h3><p><br></p><p>Jeny here  again and again and again!</p><p></p>\"}";
             //byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
             //MemoryStream stream = new MemoryStream(byteArray);
             //req.Body = stream;
@@ -69,20 +69,21 @@ namespace DevPortal.Api
 
               if (existingFile != null)
               {
-              _logger.LogInformation("File with same name exists.");
+                _logger.LogInformation("File with same name exists.");
 
-              //To update existing post
-              string commitMessage = $"Updated Content for {post.FilePath}";
-              res = 
-                await gitHubClient.Repository.Content.UpdateFile(owner, repoName, post.FilePath,
-                new UpdateFileRequest(commitMessage, post.MarkdownContent, existingFile[0].Sha, branch));
+                //To update existing post
+                string commitMessage = $"Updated Content for {post.FilePath}";
+                res = 
+                  await gitHubClient.Repository.Content.UpdateFile(owner, repoName, post.FilePath,
+                  new UpdateFileRequest(commitMessage, post.MarkdownContent, existingFile[0].Sha, branch));
 
-              postResponse.IsSuccess = true;
-              postResponse.ResponseMessage =
-                "File has been updated in the repository! The commit hash is " + res.Commit.Sha.Substring(0, 7) + ".";
+                postResponse.IsSuccess = true;
+                postResponse.ResponseMessage =
+                  "File has been updated in the repository! The commit hash is " + res.Commit.Sha.Substring(0, 7) + ".";
 
-              _logger.LogError($"** File updated in the repo. Commit hash: {res.Commit.Sha.Substring(0, 7)}");
-            }
+                _logger.LogInformation($"** " + postResponse.ResponseMessage);
+              }
+
             _logger.LogInformation($"** responseBody: {res}");
           }
           catch (Octokit.NotFoundException)

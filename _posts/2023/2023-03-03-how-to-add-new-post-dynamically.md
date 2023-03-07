@@ -1,16 +1,14 @@
 ---
-layout: 
+
 title: New Post Title
-author: jeny
-categories: 
-- technology
--  documentation
-tags: 
-- how-to
--  overview
--  jekyll-tutorial
-date: 27/02/2023 12:00:00 AM
+author: chatGpt
+categories: [test]
+tags: [test]
+date: 3/7/2023 3:57:48 AM
 ---
 
 
-<p><strong>This is a test post to check the dynamically generated markdown content!</strong></p>
+<p>
+<em>This content has been updated via inline editor...</em>
+
+</p><p><strong class="ql-size-huge">This is a test post to check the dynamically generated markdown content!</strong></p>
