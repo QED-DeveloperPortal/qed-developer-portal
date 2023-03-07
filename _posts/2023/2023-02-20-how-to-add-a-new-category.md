@@ -1,12 +1,8 @@
 ---
 title: "How to add a new category in a jekyll site"
 author: jeny
-categories:
-  - technology
-tags:
-  - how-to
-  - getting-started
-  - jekyll-tutorial
+categories: technology
+tags: how-to, getting-started, jekyll-tutorial
 date: 2023-02-20T13:08:50-04:00
 ---
 Adding a new category to a Jekyll site involves modifying the site's configuration file and updating the front matter of each post that should be included in the new category.
