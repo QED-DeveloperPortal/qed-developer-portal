@@ -249,10 +249,10 @@ layout: page
                 goToPostsLink.href = "/posts/";    
                 
                 const postsSpan1 = document.createElement("span");
-                postsSpan1.value = "Your post will appear ";
+                postsSpan1.innerText = "Your post will appear ";
 
                 const postsSpan2 = document.createElement("span");
-                postsSpan2.value = " shortly. ";
+                postsSpan2.innerText = " shortly. ";
                 
                 previewContainer.innerHTML = responseData;  
                 previewContainer.appendChild(postsSpan1);
