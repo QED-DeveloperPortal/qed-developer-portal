@@ -223,8 +223,8 @@ href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.cs
                   .then(data => {
                       if (data)
                        {
-                        //var mockdata = '{"title":"Testing edit-post on new repository","categories":"test-cat1, test-cat2","author":"chatGpt","layout":null,"tags":"test-tag1, test-tag2","filePath":"_posts/2023/2023-03-06-Testing post on new repo13.md","frontMatterContent":null,"date":"2023-03-06T00:00:00", "markdownContent":"<p><h1>Hello Test Post!</h1> </p><p><h2>Hello Test Post Again!</h2></p>"}';
-                        //var postObj = JSON.parse(mockdata);//mockdata.json();
+                        //var mockdata = '{"title":"Test Post,"categories":"test","author":"chatGpt","layout":null,"tags":"test","filePath":"_posts/1900/1900-01-01-Test%20Post.md","frontMatterContent":null,"date":"1900-01-01T00:00:00", "markdownContent":"<p><h1>Hello Test Post!</h1> </p><p><h2>Hello Test Post Again!</h2></p>"}';
+                        //data = JSON.parse(mockdata);//mockdata.json();
                         
                         console.log('data:' + data);                        
                                           
@@ -293,19 +293,18 @@ href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.cs
                 updateFormData.append("categories", ucategories);
                 updateFormData.append("tags", utags);
                 updateFormData.append("body", ubody);
+                updateFormData.append("filePath", filePath);
 
                 const responseData = await postUpdateFormDataAsJson({ update_url, updateFormData });
-                console.log( { responseData });
-
-                const reviewContainer = document.getElementById("review-container");  
+                console.log( { responseData });                
                 
                 const goToPostsLink = document.createElement("a");
                 goToPostsLink.innerText = "Go to Posts to view updated post.";               
-                goToPostsLink.href = "/posts/";                
-                
+                goToPostsLink.href = "/posts/";    
+                            
+                const reviewContainer = document.getElementById("review-container");  
                 reviewContainer.innerHTML = responseData;     
-                reviewContainer.appendChild(goToPostsLink);          
-
+                reviewContainer.appendChild(goToPostsLink);   
             }
             catch(error){
                 console.error(error);
@@ -313,11 +312,5 @@ href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.cs
         }
             
         const uform = document.getElementById("form-updatepost");
-        uform.addEventListener("submit", handleFormUpdate);  
-
-    //Populate this content in the editor
-
-    //Save the content
-
-
+        uform.addEventListener("submit", handleFormUpdate); 
 </script>

@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using DevPortal.Models;
 
 namespace DevPortal.Api.Helpers
@@ -19,7 +16,7 @@ namespace DevPortal.Api.Helpers
     {
       StringBuilder sb = new StringBuilder();
 
-      post.FrontMatterContent = GenerateFrontMatter(post.Layout, post.Title, post.Author, post.Categories, post.Tags);
+      post.FrontMatterContent = GenerateFrontMatter(post.Layout, post.Title, post.Author, post.Categories, post.Tags, post.Date);
       post.MarkdownContent = $"{post.FrontMatterContent}{post.Body}";
 
       return post;
@@ -43,15 +40,6 @@ namespace DevPortal.Api.Helpers
       if (content.IndexOf("---") == content.LastIndexOf("---"))
         return post;
 
-      //---
-      //layout: post
-      //title:  "Welcome to Jekyll!"
-      //date: 2022 - 11 - 29 13:02:18 + 1000
-      //category: [cloud, tech]
-      //tags: [test,test2]
-      //author: chatgpt
-      //---
-
       // split header and markdown content - parse the header as a Json object...
       var header = content.Substring(0, content.LastIndexOf("---") + 3);
       post.MarkdownContent = content.Substring(content.LastIndexOf("---") + 3).TrimEnd('-');
@@ -59,7 +47,7 @@ namespace DevPortal.Api.Helpers
 
       try
       {
-        // get the Jekyll header...
+        // get the Jekyll header
         header = $"{{{header[3..^3]}}}"
           .TrimStart('{')
           .TrimEnd('}');
@@ -126,13 +114,13 @@ namespace DevPortal.Api.Helpers
     /// <param name="categories"></param>
     /// <param name="tags"></param>
     /// <returns></returns>
-    private static string GenerateFrontMatter(string layout, string title, string author, string categories, string tags)
+    private static string GenerateFrontMatter(string layout, string title, string author, string categories, string tags, DateTime date)
     {
       StringBuilder fmBuilder = new StringBuilder();
 
       //TODO: Need to populate signed-in user
       if (String.IsNullOrEmpty(author))
-        author = "chatGpt";
+        author = "chatGpt"; //TODO: To be replaced by logged in user
 
       if (String.IsNullOrEmpty(layout))
         fmBuilder.AppendLine($"---\n");
@@ -144,12 +132,7 @@ namespace DevPortal.Api.Helpers
 
       fmBuilder.AppendLine($"categories: {FormatList(categories)}");
       fmBuilder.AppendLine($"tags: {FormatList(tags)}");
-      fmBuilder.AppendLine($"date: {DateTime.Now.Date}");
-
-      //hard-coding these values for testing purpose
-      //fmBuilder.AppendLine($"categories: test");
-      //fmBuilder.AppendLine($"tags: test");
-      //fmBuilder.AppendLine($"date: 1900-01-01 12:00:00 AM");
+      fmBuilder.AppendLine($"date: {date}");
 
       fmBuilder.AppendLine($"---\n\n");
 
@@ -157,7 +140,7 @@ namespace DevPortal.Api.Helpers
     }
 
     private static string FormatList(string items)
-    {
+    {/*
       string[] list = items.Split(',');
       StringBuilder sb = new StringBuilder();
       sb.AppendLine();
@@ -166,10 +149,11 @@ namespace DevPortal.Api.Helpers
       {
         sb.AppendLine($"- {item.Trim()}");
       }
+      sb.ToString();*/
 
       string formattedList = String.Concat("[", items.TrimEnd(',').Trim(), "]");
 
-      return formattedList; //sb.ToString();
+      return formattedList; 
     }
 
   }
