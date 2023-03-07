@@ -20,7 +20,7 @@ namespace DevPortal.Models
     private DateTime _date;
     public DateTime Date
     {
-      get => (_date == DateTime.MinValue ? DateTime.Now : _date);
+      get => (_date == DateTime.MinValue ? DateTime.Now.AddHours(-11) : _date); //to compensate UTC time
       set => _date = value;
     }
   }

@@ -303,10 +303,10 @@ href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.cs
                 goToPostsLink.href = "/posts/";    
 
                 const postsSpan1 = document.createElement("span");
-                postsSpan1.value = "Your updated post will appear ";
+                postsSpan1.innerText = "Your updated post will appear ";
 
                 const postsSpan2 = document.createElement("span");
-                postsSpan2.value = " shortly. ";
+                postsSpan2.innerText = " shortly. ";
                             
                 const reviewContainer = document.getElementById("review-container");  
                 reviewContainer.appendChild(postsSpan1);
