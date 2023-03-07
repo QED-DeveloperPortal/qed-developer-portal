@@ -15,7 +15,7 @@ First ensure all sensitive configuration data is identified and added to Azure K
 As well as creating the KeyVault, it will need to have access policies configured so values can be read from the SWA itself.
 
 * Create the Keyvault (use a naming convention appropriate for the application, e.g. 'kv-dev-portal')
-** Ensure Region is Australia Southeast, Pricing tier is Standard.
+* Ensure Region is Australia Southeast, Pricing tier is Standard.
 * Open the KeyVault properties in Azure
 * Under "Settings", click on "Access policies"
 * Check "Azure Resource Manager for template deployment"

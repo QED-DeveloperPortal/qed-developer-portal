@@ -89,7 +89,7 @@ $button-active-blue: #1669F2;
 .user-info {
   float: right;
   font-family: 'Open Sans';
-  margin-bottom: 8px;
+  height: 16px;
   margin-right: 8px;
   font-weight: 500;
 }
@@ -204,6 +204,21 @@ $button-active-blue: #1669F2;
 
 .bg-aad {
   background-color: $facebook-blue;
+}
+
+.link-footer-container {
+  padding-bottom: 16px;
+}
+
+.link-footer {
+
+  .link-left {
+    float: left;
+  }
+
+  .link-right {
+    float: right;
+  }
 }
 
 .link-edit {
