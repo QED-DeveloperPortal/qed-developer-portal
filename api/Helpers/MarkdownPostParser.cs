@@ -23,7 +23,7 @@ namespace DevPortal.Api.Helpers
       post.MarkdownContent = $"{post.FrontMatterContent}{post.Body}";
 
       if(String.IsNullOrEmpty(post.FilePath))
-        post.FilePath = String.Concat($"_posts/", post.Date, "/", post.Date.ToString("yyyy-MM-dd"), "-", post.Title, ".md");
+        post.FilePath = String.Concat($"_posts/", post.Date.Year, "/", post.Date.ToString("yyyy-MM-dd"), "-", post.Title, ".md");
 
       return post;
     }
