@@ -37,7 +37,11 @@
         {
           "route": "/developers*",
           "allowedRoles": ["internal_dev"]
-        }
+        },
+        {
+          "route": "/add/*",
+          "allowedRoles": ["internal_dev", "moderator_general"]
+        },
     ],
     "responseOverrides": {
         "403": {

@@ -21,6 +21,7 @@ layout: page
       {% assign first_category = true %}
 
       {% for category in site.categories %}
+        <h5>->{{ category[0] }}<-</h5>
         {% if category[1].size == i %}
           {% if first_category %}
             {% assign first_category = false %}
@@ -56,7 +57,7 @@ layout: page
         {% for category_name in category_names_list %}
           <li>
             <a href="#{{ category_name | slugify }}">
-              <strong>{{ category_name }}</strong> <span class="taxonomy-count">{{ category_count }}</span>
+              <strong>{{ site.data.categories[category_name].name }}</strong> <span class="taxonomy-count">{{ category_count }}</span>
             </a>
           </li>
         {% endfor %}
