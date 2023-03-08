@@ -48,7 +48,7 @@ namespace DevPortal.Api
 
             //Todo: Call GitHub API function to create a new pull request            
             
-            return new OkObjectResult(postResponse.ResponseMessage);
+            return new OkObjectResult(postResponse);
         }
 
     
@@ -113,7 +113,7 @@ namespace DevPortal.Api
             _logger.LogInformation($"** Error occurred while adding a new post: {ex}");
           }
 
-          return postResponse;;
+          return postResponse;
         }
     }
 }
