@@ -13,3 +13,6 @@ publishing:
 jekyll-tutorial:
   name: Jekyll Tutorial
   css-class: tag-green
+cloud:
+  name: Cloud
+  css-class: tag-blue
