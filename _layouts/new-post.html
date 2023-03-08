@@ -243,9 +243,9 @@ layout: page
                 console.log( { responseData });
 
                 const previewContainer = document.getElementById("preview-container");  
-                previewContainer.innerHTML = responseData.ResponseMessage;  
+                previewContainer.innerHTML = responseData.responseMessage;  
 
-                if (responseData.IsSuccess){
+                if (responseData.isSuccess){
                     const goToPostsLink = document.createElement("a");
                     goToPostsLink.innerText = "here";               
                     goToPostsLink.href = "/posts/";    
