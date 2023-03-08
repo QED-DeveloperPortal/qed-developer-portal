@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using System.Text.RegularExpressions;
 using Microsoft.Graph;
 using Post = DevPortal.Models.Post;
 using DevPortal.Models;
@@ -140,18 +141,8 @@ namespace DevPortal.Api.Helpers
     }
 
     private static string FormatList(string items)
-    {/*
-      string[] list = items.Split(',');
-      StringBuilder sb = new StringBuilder();
-      sb.AppendLine();
-
-      foreach (string item in list)
-      {
-        sb.AppendLine($"- {item.Trim()}");
-      }
-      sb.ToString();*/
-
-      string formattedList = String.Concat("[", items.TrimEnd(',').Trim(), "]");
+    {
+      string formattedList = "[" + Regex.Replace(items.TrimEnd(','), @" ", "") + "]";
 
       return formattedList; 
     }
