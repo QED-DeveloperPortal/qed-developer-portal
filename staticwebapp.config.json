@@ -31,13 +31,17 @@
             "allowedRoles": ["authenticated"]
         },
         {
-          "route": "/vendor*",
+          "route": "/vendor/*",
           "allowedRoles": ["vendor", "internal_dev"]
         },
         {
           "route": "/developers*",
           "allowedRoles": ["internal_dev"]
-        }
+        },
+        {
+          "route": "/add/*",
+          "allowedRoles": ["internal_dev", "moderator_general"]
+        },
     ],
     "responseOverrides": {
         "403": {

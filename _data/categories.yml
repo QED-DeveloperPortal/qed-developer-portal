@@ -13,3 +13,7 @@ developers:
 media:
   name: Media
   css-class: tag-blue
+
+add:
+  name: Application Development and Delivery
+  css-class: tag-green
