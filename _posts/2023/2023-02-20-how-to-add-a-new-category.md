@@ -1,59 +1,21 @@
 ---
-title: "How to add a new category in a jekyll site"
-author: jeny
-categories: technology
-tags: how-to,getting-started,jekyll-tutorial
-date: 2023-02-20T13:08:50-04:00
+
+title: How to add a new category in a jekyll site
+author: chatGpt
+categories: [technology]
+tags: [how-to,getting-started,jekyll-tutorial]
+date: 2023-03-07 16:27:22 +00:00
 ---
-Adding a new category to a Jekyll site involves modifying the site's configuration file and updating the front matter of each post that should be included in the new category.
 
-Here are the steps to add a new category:
 
-1. Open your site's configuration file, ***`_config.yml`***, in a text editor.
-2. Add the new category to the defaults section of the configuration file. For example:
+<p>
 
-    ```yaml
-    defaults:
-    -
-        scope:
-        path: ""
-        type: "posts"
-        values:
-        category: "blog"
-    -
-        scope:
-        path: ""
-        type: "posts"
-        values:
-        category: "news"
 
-    ```
+</p><p>
 
-    In this example, two new categories, "blog" and "news", have been added to the ***`defaults`*** section.
 
-3. Save the changes to ***`_config.yml`***.
-
-4. Open each post that should be included in the new category and add the category to the post's front matter. For example:
-
-    ```yaml
-    ---
-    layout: post
-    title: "My Post Title"
-    category: "news"
-    ---
-    ```
-    In this example, the post has been assigned the "news" category.
-
-5. Save the changes to each post's front matter.
-
-6. Finally, you can create a new page that displays all posts in the new category by creating a new Markdown file in the ***`_pages`*** directory with the following front matter:
-    ```yaml
-    ---
-    layout: category
-    title: Category Title
-    category: categoryname
-    ---
-    ```
+</p><p>
+<em style="color: rgb(0, 71, 178); background-color: rgb(255, 255, 102);">[This post has been updated via inline editor. Checking the format of the content...]   </em></p><p><br></p><p><span style="color: var(--color-fg-default);">Adding a new category to a Jekyll site involves modifying the site's configuration file and updating the front matter of each post that should be included in the new category.</span></p><p><br></p><p><br></p><p><span style="color: var(--color-fg-default);">Here are the steps to add a new category:</span></p><p><br></p><p><br></p><p><span style="color: var(--color-prettylights-syntax-variable);">1.</span><span style="color: var(--color-fg-default);"> Open your site's configuration file, </span><strong style="color: var(--color-prettylights-syntax-markup-bold);">***`_config.yml`***</strong><span style="color: var(--color-fg-default);">, in a text editor.</span></p><p><span style="color: var(--color-prettylights-syntax-variable);">2.</span><span style="color: var(--color-fg-default);"> Add the new category to the defaults section of the configuration file. For example:</span></p><p><br></p><p><br></p><p><span style="color: var(--color-prettylights-syntax-constant);">    ```yaml</span></p><p><span style="color: var(--color-fg-default);">    </span><span style="color: var(--color-prettylights-syntax-entity-tag);">defaults</span><span style="color: var(--color-fg-default);">:</span></p><p><span style="color: var(--color-fg-default);">    -</span></p><p><span style="color: var(--color-fg-default);">        </span><span style="color: var(--color-prettylights-syntax-entity-tag);">scope</span><span style="color: var(--color-fg-default);">:</span></p><p><span style="color: var(--color-fg-default);">        </span><span style="color: var(--color-prettylights-syntax-entity-tag);">path</span><span style="color: var(--color-fg-default);">: </span><span style="color: var(--color-prettylights-syntax-string);">""</span></p><p><span style="color: var(--color-fg-default);">        </span><span style="color: var(--color-prettylights-syntax-entity-tag);">type</span><span style="color: var(--color-fg-default);">: </span><span style="color: var(--color-prettylights-syntax-string);">"posts"</span></p><p><span style="color: var(--color-fg-default);">        </span><span style="color: var(--color-prettylights-syntax-entity-tag);">values</span><span style="color: var(--color-fg-default);">:</span></p><p><span style="color: var(--color-fg-default);">        </span><span style="color: var(--color-prettylights-syntax-entity-tag);">category</span><span style="color: var(--color-fg-default);">: </span><span style="color: var(--color-prettylights-syntax-string);">"blog"</span></p><p><span style="color: var(--color-fg-default);">    -</span></p><p><span style="color: var(--color-fg-default);">        </span><span style="color: var(--color-prettylights-syntax-entity-tag);">scope</span><span style="color: var(--color-fg-default);">:</span></p><p><span style="color: var(--color-fg-default);">        </span><span style="color: var(--color-prettylights-syntax-entity-tag);">path</span><span style="color: var(--color-fg-default);">: </span><span style="color: var(--color-prettylights-syntax-string);">""</span></p><p><span style="color: var(--color-fg-default);">        </span><span style="color: var(--color-prettylights-syntax-entity-tag);">type</span><span style="color: var(--color-fg-default);">: </span><span style="color: var(--color-prettylights-syntax-string);">"posts"</span></p><p><span style="color: var(--color-fg-default);">        </span><span style="color: var(--color-prettylights-syntax-entity-tag);">values</span><span style="color: var(--color-fg-default);">:</span></p><p><span style="color: var(--color-fg-default);">        </span><span style="color: var(--color-prettylights-syntax-entity-tag);">category</span><span style="color: var(--color-fg-default);">: </span><span style="color: var(--color-prettylights-syntax-string);">"news"</span></p><p><br></p><p><span style="color: var(--color-prettylights-syntax-constant);">    ```</span></p><p><br></p><p><br></p><p><span style="color: var(--color-fg-default);">    In this example, two new categories, "blog" and "news", have been added to the </span><strong style="color: var(--color-prettylights-syntax-markup-bold);">***`defaults`***</strong><span style="color: var(--color-fg-default);"> section.</span></p><p><br></p><p><br></p><p><span style="color: var(--color-prettylights-syntax-variable);">3.</span><span style="color: var(--color-fg-default);"> Save the changes to </span><strong style="color: var(--color-prettylights-syntax-markup-bold);">***`_config.yml`***</strong><span style="color: var(--color-fg-default);">.</span></p><p><br></p><p><br></p><p><span style="color: var(--color-prettylights-syntax-variable);">4.</span><span style="color: var(--color-fg-default);"> Open each post that should be included in the new category and add the category to the post's front matter. For example:</span></p><p><br></p><p><br></p><p><span style="color: var(--color-prettylights-syntax-constant);">    ```yaml</span></p><p><span style="color: var(--color-fg-default);">    </span><span style="color: var(--color-prettylights-syntax-string);">---</span></p><p><span style="color: var(--color-fg-default);">    </span><span style="color: var(--color-prettylights-syntax-entity-tag);">layout</span><span style="color: var(--color-fg-default);">: </span><span style="color: var(--color-prettylights-syntax-string);">post</span></p><p><span style="color: var(--color-fg-default);">    </span><span style="color: var(--color-prettylights-syntax-entity-tag);">title</span><span style="color: var(--color-fg-default);">: </span><span style="color: var(--color-prettylights-syntax-string);">"My Post Title"</span></p><p><span style="color: var(--color-fg-default);">    </span><span style="color: var(--color-prettylights-syntax-entity-tag);">category</span><span style="color: var(--color-fg-default);">: </span><span style="color: var(--color-prettylights-syntax-string);">"news"</span></p><p><span style="color: var(--color-fg-default);">    </span><span style="color: var(--color-prettylights-syntax-string);">---</span></p><p><span style="color: var(--color-prettylights-syntax-constant);">    ```</span></p><p><span style="color: var(--color-fg-default);">    In this example, the post has been assigned the "news" category.</span></p><p><br></p><p><br></p><p><span style="color: var(--color-prettylights-syntax-variable);">5.</span><span style="color: var(--color-fg-default);"> Save the changes to each post's front matter.</span></p><p><br></p><p><br></p><p><span style="color: var(--color-prettylights-syntax-variable);">6.</span><span style="color: var(--color-fg-default);"> Finally, you can create a new page that displays all posts in the new category by creating a new Markdown file in the </span><strong style="color: var(--color-prettylights-syntax-markup-bold);">***`_pages`***</strong><span style="color: var(--color-fg-default);"> directory with the following front matter:</span></p><p><span style="color: var(--color-prettylights-syntax-constant);">    ```yaml</span></p><p><span style="color: var(--color-fg-default);">    </span><span style="color: var(--color-prettylights-syntax-string);">---</span></p><p><span style="color: var(--color-fg-default);">    </span><span style="color: var(--color-prettylights-syntax-entity-tag);">layout</span><span style="color: var(--color-fg-default);">: </span><span style="color: var(--color-prettylights-syntax-string);">category</span></p><p><span style="color: var(--color-fg-default);">    </span><span style="color: var(--color-prettylights-syntax-entity-tag);">title</span><span style="color: var(--color-fg-default);">: </span><span style="color: var(--color-prettylights-syntax-string);">Category Title</span></p><p><span style="color: var(--color-fg-default);">    </span><span style="color: var(--color-prettylights-syntax-entity-tag);">category</span><span style="color: var(--color-fg-default);">: </span><span style="color: var(--color-prettylights-syntax-string);">categoryname</span></p><p><span style="color: var(--color-fg-default);">    </span><span style="color: var(--color-prettylights-syntax-string);">---</span></p><p><span style="color: var(--color-prettylights-syntax-constant);">    ```</span></p><p>
     In this example, replace Category Title with the title of the new category and ***`categoryname`*** with the name of the new category.
 
     Next, add the following code to the bottom of the new page to display all posts in the new category:
@@ -61,11 +23,12 @@ Here are the steps to add a new category:
    {% raw %}
     ```html
     {% for post in site.categories[page.category] %}
-    <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-    <p>{{ post.excerpt }}</p>
+    </p><h2><a href="{{ post.url }}">{{ post.title }}</a></h2><p>
+    </p><p>{{ post.excerpt }}</p><p>
     {% endfor %}
     ```
     {% endraw %}
     Save the new page and the new category should now be available on your Jekyll site.
 
 In summary, adding a new category to a Jekyll site involves modifying the site's configuration file, updating the front matter of each post that should be included in the new category, and creating a new page to display all posts in the new category.
+</p>
