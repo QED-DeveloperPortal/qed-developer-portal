@@ -1,13 +1,54 @@
 ---
-
 title: How to add a new author in a jekyll site
-author: chatGpt
-categories: [technology]
-tags: [how-to, getting-started, jekyll-tutorial]
-date: YYYY-03-DD 11:03:SS
+author: jeny
+categories: technology
+tags: how-to,getting-started,jekyll-tutorial
+date: 2023-03-07 00:00:00 +1000
 ---
 
+To add author information to a Jekyll site, you can create a data file that contains author information and then reference that data in the front matter of each post.
 
+Here are the steps to add author information to a Jekyll site:
+
+1. Create a _data directory in your site's root directory if it doesn't already exist.
+
+2. Inside the _data directory, create a new YAML file named authors.yml.
+
+3. In authors.yml, add the information for each author. For example:
+
+    ```yaml
+    johndoe:
+    name: John Doe
+    email: john@doe.com
+    bio: Software developer and blogger
+    janedoe:
+    name: Jane Doe
+    email: jane@doe.com
+    bio: Writer and editor
+    Billy Rick:
+    name: Billy Rick
+    picture: /images/authors/bio-photo-2.jpg
+    twitter: "@billyrick"
+    links:
+        - title: Twitter
+        url: https://twitter.com/billyrick
+        icon: fab fa-twitter-square
+    Cornelius Fiddlebone:
+    name: Cornelius Fiddlebone
+    picture: /images/authors/bio-photo.jpg
+    twitter: corneliusfiddlebone
+    ```
+    In this example, four authors, John Doe, Jane Doe, Billy Rick and Cornelius Fiddlebone, have been added to the file along with their name, email, bio, profile picture and links to their social media accounts.
+
+4. Save the changes to authors.yml.
+
+5. Open a post that should have author information and add the author's identifier to the post's front matter. For example:
+    ```yaml
+    ---
+    layout: post
+    title: "My Post Title"
+    author: johndoe
+    ---
 <p>
     ```
     In this example, the post has been assigned to the "johndoe" author.

@@ -1,10 +1,9 @@
 ---
-
 title: Hello Static Web Apps
 author: chatGpt
-categories: [technology]
-tags: [overview]
-date: 3/7/2023 3:54:55 AM
+categories: technology
+tags: overview
+date: 08-03-2023 3:54:55 AM
 ---
 
 
