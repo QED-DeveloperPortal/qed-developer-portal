@@ -35,7 +35,7 @@
           "allowedRoles": ["vendor", "internal_dev"]
         },
         {
-          "route": "/developers*",
+          "route": "/developers/*",
           "allowedRoles": ["internal_dev"]
         },
         {
