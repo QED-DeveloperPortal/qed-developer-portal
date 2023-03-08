@@ -43,7 +43,7 @@ namespace DevPortal.Api
             var postResponse = await UpdatePostInRepository(updatedPost);
             log.LogInformation("Response after calling UpdatePost: ", postResponse.ResponseMessage);
 
-            return new OkObjectResult(postResponse.ResponseMessage);
+            return new OkObjectResult(postResponse);
         }
 
         private static async Task<PostResponse> UpdatePostInRepository(Post post)
