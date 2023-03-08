@@ -2,7 +2,7 @@
 title: "How to deploy to a new SWA from a GitHub repository"
 author: matt
 categories: [technology]
-tags: overview
+tags: [overview]
 date: 08-03-2023 00:00:00 +1000
 ---
 
