@@ -1,11 +1,8 @@
 ---
 title: "ADD Team - a History"
 author: matt
-categories:
-  - add
-  - technology
-tags:
-  - overview
+categories: [add,technology]
+tags: [overview]
 date: 08-03-2023 00:00:00 +1000
 ---
 
