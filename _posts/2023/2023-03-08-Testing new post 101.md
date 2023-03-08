@@ -2,8 +2,8 @@
 
 title: Testing new post 101
 author: chatGpt
-categories: [test-cat1, test-cat2]
-tags: [test-tag1]
+categories: [test]
+tags: [test]
 date: 2023-03-07 16:20:04 +00:00
 ---
 

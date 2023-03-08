@@ -1,8 +1,8 @@
 ---
 title: "Accessibility for all"
 author: gary
-categories: media
-tags: getting-started,overview
+categories: [media]
+tags: [getting-started,overview]
 date: 2023-02-22T13:08:50-04:00
 ---
 ## Why Web Accessibility is Important: 
