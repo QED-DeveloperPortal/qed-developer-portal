@@ -31,7 +31,7 @@
             "allowedRoles": ["authenticated"]
         },
         {
-          "route": "/vendor*",
+          "route": "/vendor/*",
           "allowedRoles": ["vendor", "internal_dev"]
         },
         {
