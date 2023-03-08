@@ -133,8 +133,7 @@ namespace DevPortal.Api.Helpers
       fmBuilder.AppendLine($"author: {author}");
       fmBuilder.AppendLine($"categories: {FormatList(categories)}");
       fmBuilder.AppendLine($"tags: {FormatList(tags)}");
-      fmBuilder.AppendLine($"date: { date.ToString("YYYY-MM-DD HH:MM:SS") }");
-
+      fmBuilder.AppendLine($"date: {date.ToString(date.ToString("yyyy-MM-dd HH:mm:ss zzz")) }");
       fmBuilder.AppendLine($"---\n\n");
 
       return fmBuilder.ToString();

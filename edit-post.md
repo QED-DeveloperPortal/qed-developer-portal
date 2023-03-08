@@ -1,5 +1,5 @@
 ---
-title: Edit post
+title: Edit Post
 layout: edit-post
 permalink: /edit-post/
 sitemap: false
