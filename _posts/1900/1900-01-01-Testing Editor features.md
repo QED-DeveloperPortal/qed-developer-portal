@@ -1,13 +1,17 @@
 ---
+
 title: Testing Editor features
 author: chatGpt
-categories: test
-tags: test
-date: 1900-01-01 12:00:00 AM
+categories: [test]
+tags: [test]
+date: 2023-03-07 16:29:41 +00:00
 ---
 
 
-<p><span class="ql-size-huge">This post is being edited via Edit Post page UI.
+<p>
+
+
+</p><p><span class="ql-size-huge" style="background-color: rgb(255, 255, 102);">This post is being edited via Edit Post page UI.</span><span class="ql-size-huge">
 </span>
 
 </p><p><strong>Hello world</strong></p><p><strong><em>Hello world</em></strong></p><p><strong><u>Hello world</u></strong></p><p><strong><s>Hello world</s></strong></p><blockquote><strong>Hello world</strong></blockquote><pre class="ql-syntax" spellcheck="false">console.<span class="hljs-built_in">log</span>(<span class="hljs-string">"Hello world"</span>);
