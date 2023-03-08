@@ -13,6 +13,12 @@ layout: page
       {% endif %}
     {% endfor %}
 
+    <!-- Matt TEST -->
+    <h1>site.categories Test</h1>
+    {% for category in site.categories %}
+      <h5>{{ category[0] }}</h5>
+    {% endfor %}
+
     {% assign category_names_array = "" %}
     {% assign category_counts = "" %}
     {% assign first_array_element = true %}
@@ -21,7 +27,6 @@ layout: page
       {% assign first_category = true %}
 
       {% for category in site.categories %}
-        <h5>->{{ category[0] }}<-</h5>
         {% if category[1].size == i %}
           {% if first_category %}
             {% assign first_category = false %}
