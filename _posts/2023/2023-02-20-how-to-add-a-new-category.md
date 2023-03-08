@@ -4,11 +4,14 @@ title: How to add a new category in a jekyll site
 author: chatGpt
 categories: [technology]
 tags: [how-to,getting-started,jekyll-tutorial]
-date: 2023-03-07 16:21:33 +00:00
+date: 2023-03-07 16:26:31 +00:00
 ---
 
 
 <p>
+
+
+</p><p>
 <em style="color: rgb(0, 71, 178); background-color: rgb(255, 255, 102);">[This post has been updated via inline editor. Checking the format of the content...]   </em></p><p> ```
     In this example, replace Category Title with the title of the new category and ***`categoryname`*** with the name of the new category.
 
