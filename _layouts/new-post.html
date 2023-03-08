@@ -243,21 +243,23 @@ layout: page
                 console.log( { responseData });
 
                 const previewContainer = document.getElementById("preview-container");  
-                
-                const goToPostsLink = document.createElement("a");
-                goToPostsLink.innerText = "here";               
-                goToPostsLink.href = "/posts/";    
-                
-                const postsSpan1 = document.createElement("span");
-                postsSpan1.innerText = "Your post will appear ";
+                previewContainer.innerHTML = responseData.ResponseMessage;  
 
-                const postsSpan2 = document.createElement("span");
-                postsSpan2.innerText = " shortly. ";
-                
-                previewContainer.innerHTML = responseData;  
-                previewContainer.appendChild(postsSpan1);
-                previewContainer.appendChild(goToPostsLink);   
-                previewContainer.appendChild(postsSpan2);
+                if (responseData.IsSuccess){
+                    const goToPostsLink = document.createElement("a");
+                    goToPostsLink.innerText = "here";               
+                    goToPostsLink.href = "/posts/";    
+                    
+                    const postsSpan1 = document.createElement("span");
+                    postsSpan1.innerText = "Your post will appear ";
+
+                    const postsSpan2 = document.createElement("span");
+                    postsSpan2.innerText = " shortly. ";
+
+                    previewContainer.appendChild(postsSpan1);
+                    previewContainer.appendChild(goToPostsLink);   
+                    previewContainer.appendChild(postsSpan2);
+                }
 
             }
             catch(error){

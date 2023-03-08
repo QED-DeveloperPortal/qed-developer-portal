@@ -5,8 +5,8 @@ image:
   path: /images/fruit-post.png
   thumbnail: /images/fruit-post-400.png
   caption: "Tropical fruity goodness"
-categories: security
-tags: getting-started,overview,approach
+categories: [security]
+tags: [getting-started,overview,approach]
 date: 1900-01-01 12:00:00 AM
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: How to raise a pull request to GitHub repo using Octokit library
 author: jeny
-categories: technology, documentation
-tags: how-to,overview
+categories: [technology,documentation]
+tags: [how-to,overview]
 date: 3/1/2023 12:00:00 AM
 ---
 

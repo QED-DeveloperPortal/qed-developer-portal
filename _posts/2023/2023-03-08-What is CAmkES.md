@@ -1,9 +1,9 @@
 ---
 title: What is CAmkES?
 author: chatGpt
-categories: security
-tags: security
-date: YYYY-03-DD 09:03:SS
+categories: [security]
+tags: [security]
+date:  08-03-2023 00:00:00 +1000
 ---
 
 
