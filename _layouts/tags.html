@@ -56,7 +56,11 @@ layout: page
         {% for tag_name in tag_names_list %}
           <li>
             <a href="#{{ tag_name | slugify }}">
-              <strong>{{ tag_name }}</strong> <span class="taxonomy-count">{{ tag_count }}</span>
+              {% if site.data.tags[tag_name] %}
+                <strong>{{ site.data.tags[tag_name].name }}</strong> <span class="taxonomy-count">{{ tag_count }}</span>
+              {% else %}
+                <strong>{{ tag_name }}</strong> <span class="taxonomy-count">{{ tag_count }}</span>
+              {% endif %}
             </a>
           </li>
         {% endfor %}
@@ -67,7 +71,11 @@ layout: page
       {% assign tag_names_list = tag_names | split: "," %}
       {% for tag_name in tag_names_list %}
         <section id="{{ tag_name | slugify | downcase }}" class="taxonomy-section">
-          <h2 class="taxonomy-title">{{ tag_name }}</h2>
+          {% if site.data.tags[tag_name] %}
+            <h2 class="taxonomy-title">{{ site.data.tags[tag_name].name }}</h2>
+          {% else %}
+            <h2 class="taxonomy-title">{{ tag_name }}</h2>
+          {% endif %}
           {% for tag in site.tags %}
             {% if tag[0] == tag_name %}
               <div class="entries-{{ page.entries_layout | default: 'list' }}">
