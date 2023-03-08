@@ -296,22 +296,27 @@ href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.cs
                 updateFormData.append("filePath", filePath);
 
                 const responseData = await postUpdateFormDataAsJson({ update_url, updateFormData });
-                console.log( { responseData });                
+                console.log( { responseData });            
                 
-                const goToPostsLink = document.createElement("a");
-                goToPostsLink.innerText = "here";               
-                goToPostsLink.href = "/posts/";    
-
-                const postsSpan1 = document.createElement("span");
-                postsSpan1.innerText = "Your updated post will appear ";
-
-                const postsSpan2 = document.createElement("span");
-                postsSpan2.innerText = " shortly. ";
-                            
                 const reviewContainer = document.getElementById("review-container");  
-                reviewContainer.appendChild(postsSpan1);
-                reviewContainer.appendChild(goToPostsLink);   
-                reviewContainer.appendChild(postsSpan2);
+                reviewContainer.innerHTML = responseData.responseMessage;
+                
+                if (responseData.isSuccess){
+                    const goToPostsLink = document.createElement("a");
+                    goToPostsLink.innerText = "here";               
+                    goToPostsLink.href = "/posts/";    
+                    
+                    const postsSpan1 = document.createElement("span");
+                    postsSpan1.innerText = "Your updated post will appear ";
+
+                    const postsSpan2 = document.createElement("span");
+                    postsSpan2.innerText = " shortly. ";
+
+                    reviewContainer.appendChild(postsSpan1);
+                    reviewContainer.appendChild(goToPostsLink);   
+                    reviewContainer.appendChild(postsSpan2);
+                }
+
             }
             catch(error){
                 console.error(error);
