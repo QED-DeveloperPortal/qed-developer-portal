@@ -1,9 +1,8 @@
 ---
-
 title: Testing new post  100
 author: chatGpt
-categories: [test-cat1]
-tags: [test-tag]
+categories: test
+tags: test
 date: YYYY-03-DD 01:03:SS
 ---
 

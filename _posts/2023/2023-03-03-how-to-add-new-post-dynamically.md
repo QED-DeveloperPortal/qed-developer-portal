@@ -1,10 +1,9 @@
 ---
-
 title: New Post Title
 author: chatGpt
-categories: [test]
-tags: [test]
-date: 3/7/2023 3:57:48 AM
+categories: test
+tags: test
+date: 07-03-2023 3:57:48 AM
 ---
 
 
