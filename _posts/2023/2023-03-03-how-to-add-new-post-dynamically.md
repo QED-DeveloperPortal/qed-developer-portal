@@ -2,7 +2,7 @@
 
 title: New Post Title
 author: chatGpt
-categories: [test-cat3]
+categories: [test]
 tags: [test]
 date: 2023-03-07 16:20:30 +00:00
 ---

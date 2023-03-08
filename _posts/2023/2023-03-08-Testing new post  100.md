@@ -1,9 +1,9 @@
 ---
 title: Testing new post  100
 author: chatGpt
-categories: test
-tags: test
-date: YYYY-03-DD 01:03:SS
+categories: [test]
+tags: [test]
+date:  08-03-2023 00:00:00 +1000
 ---
 
 
