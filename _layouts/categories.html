@@ -13,12 +13,6 @@ layout: page
       {% endif %}
     {% endfor %}
 
-    <!-- Matt TEST -->
-    <h1>site.categories Test</h1>
-    {% for category in site.categories %}
-      <h5>{{ category[0] }}</h5>
-    {% endfor %}
-
     {% assign category_names_array = "" %}
     {% assign category_counts = "" %}
     {% assign first_array_element = true %}
@@ -62,7 +56,11 @@ layout: page
         {% for category_name in category_names_list %}
           <li>
             <a href="#{{ category_name | slugify }}">
-              <strong>{{ site.data.categories[category_name].name }}</strong> <span class="taxonomy-count">{{ category_count }}</span>
+              {% if site.data.categories[category_name] %}
+                <strong>{{ site.data.categories[category_name].name }}</strong> <span class="taxonomy-count">{{ category_count }}</span>
+              {% else %}
+                <strong>{{ category_name }}</strong> <span class="taxonomy-count">{{ category_count }}</span>
+              {% endif %}
             </a>
           </li>
         {% endfor %}
@@ -73,7 +71,11 @@ layout: page
       {% assign category_names_list = category_names | split: "," %}
       {% for category_name in category_names_list %}
         <section id="{{ category_name | slugify | downcase }}" class="taxonomy-section">
-          <h2 class="taxonomy-title">{{ category_name }}</h2>
+          {% if site.data.categories[category_name] %}
+            <h2 class="taxonomy-title">{{ site.data.categories[category_name].name }}</h2>
+          {% else %}
+            <h2 class="taxonomy-title">{{ category_name }}</h2>
+          {% endif %}
           {% for category in site.categories %}
             {% if category[0] == category_name %}
               <div class="entries-{{ page.entries_layout | default: 'list' }}">
