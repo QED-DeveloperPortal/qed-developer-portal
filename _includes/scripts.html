@@ -69,6 +69,23 @@ MathJax = {
 <script type="text/javascript" id="MathJax-script" async src="{{ mathjaxjs }}"></script>
 {% endif %}
 
+<script>
+  var toggleButton = document.getElementById("js-nav-menu-toggle");
+  var menu = document.getElementById("navigation-menu");
+
+  if (toggleButton && menu) {
+    console.log("Found elements!");
+
+    toggleButton.addEventListener("click", function() {
+      console.log('** Nav clicked!!!');
+      menu.classList.toggle('navigation-menu--open');
+    });
+  }
+  else {
+    console.log("cannot find elements!");
+  }
+</script>
+
 {%- if page.layout == "search" -%}
   {% include lunr-search-scripts.html %}
 {%- endif -%}

@@ -98,6 +98,7 @@
   
     .dev-avatar {
       position: absolute;
+      z-index: -1;
       top: 8px;
       display: inline-flex;
       color: #fff;

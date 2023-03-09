@@ -1,13 +1,5 @@
 $(document).ready(function() {
-  // main menu toggle
-  var toggleButton = document.getElementById("menu-toggle");
-  var menu = document.getElementById("primary-nav");
-
-  if (toggleButton && menu) {
-    toggleButton.addEventListener("click", function() {
-      menu.classList.toggle("js-menu-is-open");
-    });
-  }
+  console.log("Doc READY");
 
   // initialize smooth scroll
   $("a").smoothScroll({ offset: -20 });
@@ -15,3 +7,17 @@ $(document).ready(function() {
   // add lightbox class to all image links
   $("a[href$='.jpg'], a[href$='.png'], a[href$='.gif']").attr("data-lity", "");
 });
+
+// $(document).ready(function($) {
+//   $('.js-nav-menu-toggle').on('click', function() {
+//     console.log('** Nav clicked!!!');
+//     $(this).parents('.navigation-menu').toggleClass('navigation-menu--open');
+//   });
+  
+//   $('html').on('click', function(e) {
+//     if(!$(e.target).closest('.js-nav-menu').length &&
+//       ($('.js-nav-menu').hasClass('navigation-menu--open'))) {
+//         $('.js-nav-menu').removeClass('navigation-menu--open');
+//     }
+//   });
+// })(jQuery);
