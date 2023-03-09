@@ -4,11 +4,14 @@ title: How to call GitHub APIs using Octokit library
 author: chatGpt
 categories: [technology,documentation]
 tags: [tutorial,how-to]
-date: 2023-03-08 15:46:12 +00:00
+date: 2023-03-08 16:11:13 +00:00
 ---
 
 
-<p><em style="background-color: rgb(255, 255, 102);">This page has been edited by the author</em>
+<p>
+
+
+</p><p><em style="background-color: rgb(255, 255, 102);">This page has been edited by the author</em>
 
 </p><p>To call the GitHub API using the <strong>Octokit </strong>library, you first need to install it in your project by running the following command in your terminal:</p><p><br></p><pre class="ql-syntax" spellcheck="false">npm install @octokit/rest
 </pre><p><br></p><p>Once you have installed <strong>Octokit</strong>, you can create a new instance of the <strong>Octokit </strong>REST client and use it to make API requests. Here's an example of how to create a client and get information about a user:</p><pre class="ql-syntax" spellcheck="false"><span class="hljs-keyword">const</span> { <span class="hljs-title class_">Octokit</span> } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"@octokit/rest"</span>);
