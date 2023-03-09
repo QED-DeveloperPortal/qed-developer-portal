@@ -1,5 +1,5 @@
 {% if site.data.navigation %}
-  <div class="navigation-wrapper">
+  <!-- <div class="navigation-wrapper">
     <a href="#menu-toggle" id="menu-toggle">{{ site.data.text[site.locale].menu_label | default: 'Menu' }}</a>
     <nav id="primary-nav" class="site-nav animated drop">
       <ul>
@@ -13,5 +13,41 @@
         {%- endfor -%}
       </ul>
     </nav>
-  </div><!-- /.navigation-wrapper -->
+  </div> -->
+  <div class="navigation">
+    <div class="userBx">
+      <div class="imgBx">
+        <img src="/images/authors/matty-b-150x150.jpg" alt="user avatar" />
+      </div>
+      <p class="username">mattyBoisterous</p>
+    </div>
+    <div class="menuToggle"></div>
+    <ul class="menu">
+      {%- for link in site.data.navigation -%}
+        {%- if link.url contains '://' -%}
+          {%- assign url = link.url -%}
+        {%- else -%}
+          {%- assign url = link.url | relative_url -%}
+        {%- endif -%}
+        <li><a href="{{ url }}"><span class="{{ link.fa-icon }}"></span>{{ link.title }}</a></li>
+      {%- endfor -%}
+    </ul>
+  </div>
+
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+  ></script>
+
+  <script>
+    let menuToggle = document.querySelector(".menuToggle");
+    let navigation = document.querySelector(".navigation");
+    menuToggle.onclick = function () {
+      navigation.classList.toggle("active");
+    };
+  </script>
 {% endif %}
