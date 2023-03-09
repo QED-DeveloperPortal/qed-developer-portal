@@ -1,5 +1,5 @@
 {% if site.data.navigation %}
-  <div class="navigation-wrapper">
+  <!-- <div class="navigation-wrapper">
     <a href="#menu-toggle" id="menu-toggle">{{ site.data.text[site.locale].menu_label | default: 'Menu' }}</a>
     <nav id="primary-nav" class="site-nav animated drop">
       <ul>
@@ -13,5 +13,30 @@
         {%- endfor -%}
       </ul>
     </nav>
-  </div><!-- /.navigation-wrapper -->
+  </div>/.navigation-wrapper -->
+  <nav>
+    <div class="navbar" style="margin-bottom: 8px;">
+      <div class="container nav-container">
+          <input class="checkbox" type="checkbox" name="" id="" />
+          <div class="hamburger-lines">
+            <span class="line line1"></span>
+            <span class="line line2"></span>
+            <span class="line line3"></span>
+          </div>  
+        <!-- <div class="logo">
+          <h1>Navbar</h1>
+        </div> -->
+        <div class="menu-items">
+          {%- for link in site.data.navigation -%}
+            {%- if link.url contains '://' -%}
+              {%- assign url = link.url -%}
+            {%- else -%}
+              {%- assign url = link.url | relative_url -%}
+            {%- endif -%}
+            <li><a href="{{ url }}">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </nav>
 {% endif %}
