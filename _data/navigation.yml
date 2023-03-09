@@ -2,13 +2,19 @@
 
 - title: Home
   url: /
+  fa-icon: fas fa-home
 - title: Posts
   url: /posts/
+  fa-icon: fas fa-comment-alt
 - title: Categories
   url: /categories/
+  fa-icon: fas fa-layer-group
 - title: Tags
   url: /tags/
+  fa-icon: fas fa-tags
 - title: Search
   url: /search/
+  fa-icon: fas fa-search
 - title: Apis
   url: https://sitestudio.github.io
+  fa-icon: fas fa-cog
