@@ -17,42 +17,31 @@
   <div class="navigation">
     <div class="userBx">
       <div class="imgBx">
-        <img src="user.jpg" alt="user avatar" />
+        <img src="/images/authors/matty-b-150x150.jpg" alt="user avatar" />
       </div>
-      <p class="username">CSSScript</p>
+      <p class="username">mattyBoisterous</p>
     </div>
     <div class="menuToggle"></div>
     <ul class="menu">
-      <li>
-        <a href="#"><ion-icon name="person-outline"></ion-icon>Profile</a>
-      </li>
-      <li>
-        <a href="#"
-          ><ion-icon name="chatbubble-outline"></ion-icon>Messages</a
-        >
-      </li>
-      <li>
-        <a href="#"
-          ><ion-icon name="notifications-outline"></ion-icon>Notification</a
-        >
-      </li>
-      <li>
-        <a href="#"><ion-icon name="settings-outline"></ion-icon>Settings</a>
-      </li>
-      <li>
-        <a href="#"><ion-icon name="log-out-outline"></ion-icon>Logout</a>
-      </li>
+      {%- for link in site.data.navigation -%}
+        {%- if link.url contains '://' -%}
+          {%- assign url = link.url -%}
+        {%- else -%}
+          {%- assign url = link.url | relative_url -%}
+        {%- endif -%}
+        <li><a href="{{ url }}"><span class="{{ link.fa-icon }}"></span>{{ link.title }}</a></li>
+      {%- endfor -%}
     </ul>
   </div>
 
-  <!-- <script
+  <script
     type="module"
     src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
   ></script>
   <script
     nomodule
     src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-  ></script> -->
+  ></script>
 
   <script>
     let menuToggle = document.querySelector(".menuToggle");
