@@ -1,5 +1,6 @@
 $body-color: #fff;
-$menu-background-color: #4E567E;
+// $menu-background-color: #4E567E;
+$menu-background-color: #3b5998;
 $menu-icons-color: #fff;
 $font-stack: Open sans, sans-serif;
 
@@ -62,9 +63,22 @@ $font-stack: Open sans, sans-serif;
         font-weight: 100;
         opacity: 1;
         list-style: none;
+        // -webkit-transition:0.3s;
+        // transition-timing-function: ease;
+        
+        &:hover {
+            // -webkit-transform: scale(1.1);
+            font-weight: 500;
+            // -webkit-transition:0.3s;
+            transition-timing-function: ease;
+        }
 
         a {
             color: #fff !important;
+
+            &:hover {
+                text-decoration: none;
+            }
         }
       }
       
