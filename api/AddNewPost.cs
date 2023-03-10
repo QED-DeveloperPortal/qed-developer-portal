@@ -59,7 +59,7 @@ namespace DevPortal.Api
 
           string token = System.Environment.GetEnvironmentVariable("GITHUB_TOKEN", EnvironmentVariableTarget.Process);
           string repoName = System.Environment.GetEnvironmentVariable("GITHUB_REPO", EnvironmentVariableTarget.Process);
-          string branch = System.Environment.GetEnvironmentVariable("GITHUB_BRANCH", EnvironmentVariableTarget.Process);
+          string branch = "replace-editor"; //System.Environment.GetEnvironmentVariable("GITHUB_BRANCH", EnvironmentVariableTarget.Process);
           string owner = System.Environment.GetEnvironmentVariable("GITHUB_OWNER", EnvironmentVariableTarget.Process);
 
           var gitHubClient = new GitHubClient(new Octokit.ProductHeaderValue("DevPortal"));

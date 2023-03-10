@@ -4,6 +4,10 @@ layout: page
 
 {{ content }}
 
+<!-- Add Toast UI Editor -->
+<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
 <section class="content-container">
     <div class="container">   
         <div class="editor-container">
@@ -31,7 +35,7 @@ layout: page
                         <span class="required">Content</span>
                     </label>
                     <!-- Create the editor container -->
-                    <div id="updateEditor">        
+                    <div id="toast-update-editor">        
                     </div>
                 </div> 
                 <div>
@@ -44,9 +48,10 @@ layout: page
     </div>
 </section> 
 
-<!-- Initialize Quill editor -->    
+ 
 <script> 
-    var toolbarOptions1 = [
+   /* Initialize Quill editor */  
+   /* var toolbarOptions1 = [
          ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
          ['blockquote', 'code-block'],
 
@@ -74,9 +79,21 @@ layout: page
              toolbar: toolbarOptions1,
              syntax: true, //Allows syntax highlighting           
          }
-     });
+     });*/
 
-     const editor = document.getElementById("updateEditor");      
+      /* Initialise Toast UI Editor */
+      var toastUpdateEditor = new toastui.Editor({
+            el: document.querySelector('#toast-update-editor'),
+            height: '600px',
+            initialEditType: 'markdown',
+            previewStyle: 'vertical',
+            intialValue: 'Enter your awesome content!'
+            //theme: 'dark',
+            //plugins: [[codeSyntaxHighlight, { highlighter: Prism }], [colorSyntax], [tableMergedCell]]
+        });
+
+     //const editor = document.getElementById("toast-update-editor"); 
+         
      
 </script>
 
@@ -110,8 +127,10 @@ layout: page
                         
                         console.log('data:' + data);                        
                                           
-                        var quillContainer = editor.getElementsByClassName('ql-editor');
-                        quillContainer[0].innerHTML = data.markdownContent;
+                        /*var quillContainer = editor.getElementsByClassName('toast-update-editor');
+                        quillContainer[0].innerHTML = data.markdownContent;*/
+
+                        toastUpdateEditor.innerText(data.markdownContent);
                         
                         const titleInput = document.getElementById("updatedTitle"); 
                         titleInput.value = data.title;
