@@ -4,6 +4,10 @@ layout: page
 
 {{ content }}
 
+<!-- Add Toast UI Editor -->
+<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
 <section class="content-container">
     <div class="container">   
         <div class="editor-container">
@@ -26,12 +30,19 @@ layout: page
                         <span class="required">Tags</span>
                     </label>
                 </div>
+                <!--<div>
+                    <label class="label-content">  
+                        <span class="required">Content</span>
+                    </label>                    
+                    <div id="editor">        
+                    </div>
+                </div>-->  
                 <div>
                     <label class="label-content">  
                         <span class="required">Content</span>
                     </label>
                     <!-- Create the editor container -->
-                    <div id="editor">        
+                    <div id="toast-ui-editor">        
                     </div>
                 </div>  
                 <div>
@@ -45,10 +56,10 @@ layout: page
        
     </div>
 
-    <!-- Initialize Quill editor -->    
+     
     <script>        
-
-       var toolbarOptions = [
+       /* Initialize Quill editor */
+       /*var toolbarOptions = [
             ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
             ['blockquote', 'code-block'],
 
@@ -68,15 +79,27 @@ layout: page
             [ 'link', 'image', 'formula' ],                   // add image support
 
             ['clean']                                         // remove formatting button
-        ];
+        ];*/
 
-        var quill = new Quill('#editor', {
+        /*var quill = new Quill('#editor', {
             theme: 'snow',
             modules: {                           
                 toolbar: toolbarOptions,
                 syntax: true, //Allows syntax highlighting           
             }
+        }); */  
+        
+        /* Initialise Toast UI Editor */
+        var toastEditor = new toastui.Editor({
+            el: document.querySelector('#toast-ui-editor'),
+            height: '600px',
+            initialEditType: 'markdown',
+            previewStyle: 'vertical',
+            intialValue: 'Enter your awesome content!'
+            //theme: 'dark',
+            //plugins: [[codeSyntaxHighlight, { highlighter: Prism }], [colorSyntax], [tableMergedCell]]
         });
+
 
         async function postFormDataAsJson ( {url, formData }){
             const plainFormData = Object.fromEntries(formData.entries());
@@ -115,7 +138,8 @@ layout: page
                 var title = document.getElementById("newPostTitle").value;
                 var categories = document.getElementById("newPostCategories").value;
                 var tags = document.getElementById("newPostTags").value;
-                var body = quill.root.innerHTML;
+                var body = toastEditor.getMarkdown();//quill.root.innerHTML;
+                console.log('Content from Toast UI editor -->', body);
 
                 formData.append("title", title);
                 formData.append("categories", categories);
