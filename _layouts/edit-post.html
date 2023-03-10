@@ -188,7 +188,7 @@ layout: page
                 var utitle = document.getElementById("updatedTitle").value;
                 var ucategories = document.getElementById("updatedCategories").value;
                 var utags = document.getElementById("updatedTags").value;
-                var ubody = uquill.root.innerHTML;
+                var ubody = toastUpdateEditor.getMarkdown();//uquill.root.innerHTML;
 
                 updateFormData.append("title", utitle);
                 updateFormData.append("categories", ucategories);
