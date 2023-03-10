@@ -9,15 +9,54 @@
   {% include head.html %}
 
   <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %} {% if page.entries_layout == 'grid' %}page--wide{% endif %} {{ page.title | slugify }}">
-    {% include skip-links.html %}
-    {% include navigation.html %}
-    {% include masthead.html %}
-    {% include quill-scripts.html %}
+    <div class="css-container">
+      <div class="circle-container">
+        <div class="circle">
+          <button id="kanga">
+            <i class="fas fa-times"></i>
+          </button>
+          <button id="fongola">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+      <div class="css-content">
+        {% include skip-links.html %}
+        {% include navigation.html %}
+        {% include masthead.html %}
+        {% include quill-scripts.html %}
 
-    {{ content }}
+          {{ content }}
+    
 
-    {% include footer.html %}
-    {% include scripts.html %}
+        {% include footer.html %}
+      </div>
+    </div>
+      <nav>
+        <ul>
+          {%- for link in site.data.navigation -%}
+            {%- if link.url contains '://' -%}
+              {%- assign url = link.url -%}
+            {%- else -%}
+              {%- assign url = link.url | relative_url -%}
+            {%- endif -%}
+            <li><i class="{{ link.fa-icon }}" style="margin-right: 8px;"></i><a href="{{ url }}">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+      <script>
+        const fongola = document.getElementById('fongola')
+        const kanga = document.getElementById('kanga')
+        const container = document.querySelector('.css-container')
+    
+        fongola.addEventListener('click', () => {
+          console.log("fongola CLICKED!");
+          container.classList.add('lakisa-menu');
+        });
+    
+        kanga.addEventListener('click', () => container.classList.remove('lakisa-menu'))
+      </script>
+        {% include scripts.html %}
   </body>
 
 </html>

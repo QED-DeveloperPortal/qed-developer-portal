@@ -8,23 +8,25 @@
 }
 
 body {
-  font-family: 'Lato', sans-serif;
-  background-color: #333;
-  color: #222;
+//   font-family: 'Lato', sans-serif;
+  background-color: #333 !important;
+  color: #222 !important;
   overflow-x: hidden;
   margin: 0;
 }
 
-.container {
+.css-container {
   background-color: #fafafa;
   transform-origin: top left;
   transition: transform 0.5s linear;
   width: 100vw;
   min-height: 100vh;
-  padding: 50px;
+//   padding: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
-.container.lakisa-menu {
+.css-container.lakisa-menu {
   transform: rotate(-20deg);
 }
 
@@ -43,7 +45,7 @@ body {
   transition: transform 0.5s linear;
 }
 
-.container.lakisa-menu .circle {
+.css-container.lakisa-menu .circle {
   transform: rotate(-70deg);
 }
 
@@ -73,7 +75,7 @@ body {
   transform-origin: top left;
 }
 
-.container.lakisa-menu + nav li {
+.css-container.lakisa-menu + nav li {
   transform: translateX(0);
   transition-delay: 0.3s;
 }
@@ -113,25 +115,40 @@ nav ul li + li + li {
   transform: translateX(-200%);
 }
 
-.content img {
-  max-width: 100%;
+nav ul li + li + li + li {
+    margin-left: 45px;
+    transform: translateX(-250%);
+  }
+
+  nav ul li + li + li + li + li {
+    margin-left: 60px;
+    transform: translateX(-300%);
+  }
+
+  nav ul li + li + li + li +li +li {
+    margin-left: 75px;
+    transform: translateX(-350%);
+  }
+
+.css-content img {
+//   max-width: 100%;
 }
 
-.content {
-  max-width: 1000px;
+.css-content {
+//   max-width: 1000px;
   margin: 50px auto;
 }
 
-.content h1 {
+.css-content h1 {
   margin: 0;
 }
 
-.content small {
+.css-content small {
   color: #555;
   font-style: italic;
 }
 
-.content p {
+.css-content p {
   color: #333;
   line-height: 1.5;
 }
