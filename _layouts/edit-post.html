@@ -129,8 +129,8 @@ layout: page
                                           
                         /*var quillContainer = editor.getElementsByClassName('toast-update-editor');
                         quillContainer[0].innerHTML = data.markdownContent;*/
-
-                        toastUpdateEditor.innerText(data.markdownContent);
+                        
+                        toastUpdateEditor.setMarkdown(data.markdownContent);
                         
                         const titleInput = document.getElementById("updatedTitle"); 
                         titleInput.value = data.title;
