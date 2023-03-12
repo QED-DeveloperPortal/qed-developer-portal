@@ -42,7 +42,7 @@ layout: page
                         <span class="required">Content</span>
                     </label>
                     <!-- Create the editor container -->
-                    <div id="toast-ui-editor">        
+                    <div id="toast-ui-editor" class="toast-editor">        
                     </div>
                 </div>  
                 <div>
@@ -138,7 +138,7 @@ layout: page
                 var title = document.getElementById("newPostTitle").value;
                 var categories = document.getElementById("newPostCategories").value;
                 var tags = document.getElementById("newPostTags").value;
-                var body = toastEditor.getMarkdown();//quill.root.innerHTML;
+                var body = toastEditor.getMarkdown();
                 console.log('Content from Toast UI editor -->', body);
 
                 formData.append("title", title);
