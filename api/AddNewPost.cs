@@ -38,7 +38,7 @@ namespace DevPortal.Api
             data.Date = DateTime.Now; //TODO: To be removed  when the user can choose date on UI
 
             //Generate content for markdown file for the new post
-            _newPost = MarkdownPostParser.GenerateMarkdownContent(data);
+            _newPost = MarkdownPostParser.GenerateMarkdownContent(data, true);
 
             log.LogInformation("Content of new post:" + _newPost.MarkdownContent);
 

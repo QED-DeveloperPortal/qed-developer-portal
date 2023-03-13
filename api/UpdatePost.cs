@@ -36,7 +36,7 @@ namespace DevPortal.Api
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject<Post>(requestBody);
 
-            Post updatedPost = MarkdownPostParser.GenerateMarkdownContent(data);
+            Post updatedPost = MarkdownPostParser.GenerateMarkdownContent(data, false);
 
             log.LogInformation("Incoming Request Body:" + req.Body);
 

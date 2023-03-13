@@ -16,12 +16,16 @@ namespace DevPortal.Api.Helpers
     /// </summary>
     /// <param name="post"></param>
     /// <returns></returns>
-    public static Post GenerateMarkdownContent(Post post)
+    public static Post GenerateMarkdownContent(Post post, bool isNew)
     {
       StringBuilder sb = new StringBuilder();
 
       post.FrontMatterContent = GenerateFrontMatter(post.Layout, post.Title, post.Author, post.Categories, post.Tags, post.Date);
-      //post.MarkdownContent = $"{post.FrontMatterContent}{post.Body}";
+
+      if (isNew)
+      {
+        post.MarkdownContent = $"{post.FrontMatterContent}{post.Body}";
+      }
 
       if(String.IsNullOrEmpty(post.FilePath))
         post.FilePath = String.Concat($"_posts/", post.Date.Year, "/", post.Date.ToString("yyyy-MM-dd"), "-", post.Title, ".md");
