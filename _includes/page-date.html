@@ -1,4 +1,19 @@
 <time class="page-date dt-published" datetime="{{ page.date | date_to_xmlschema }}">
   {%- assign date_format = site.date_format | default: "%B %-d, %Y" -%}
   <a class="u-url" href="{{ entry.url | relative_url }}">{{ page.date | date: date_format }}</a>
+  {% if page.updated %}
+    <h5>Last updated: {{ page.updated | date: date_format }}</h5>
+  {% endif %}
 </time>
+<script>
+  // fetch("/api/howlongago?updated=2016-12-01T00:00:00")
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       console.log(`* response: ${data}`);
+  //     });
+  fetch("/api/Test")
+      .then(response => response.json())
+      .then(data => {
+        console.log(`* response: ${data}`);
+      });
+</script>
