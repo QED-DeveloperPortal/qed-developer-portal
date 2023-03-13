@@ -10,18 +10,18 @@ namespace DevPortal.Api
 {
     public static class Utilities
     {
-        [FunctionName("HowLongAgo")]
-        public static IActionResult Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "howlongago/{updated}")] HttpRequest req,
-            DateTime updated,
-            ILogger log,
-            ClaimsPrincipal claimsPrincipal)
-        {
-            log.LogInformation("* Running...");
-            log.LogInformation($"* updated: {updated}");
+      //   [FunctionName("HowLongAgo")]
+      //   public static IActionResult Run(
+      //       [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "howlongago/{updated}")] HttpRequest req,
+      //       DateTime updated,
+      //       ILogger log,
+      //       ClaimsPrincipal claimsPrincipal)
+      //   {
+      //       log.LogInformation("* Running...");
+      //       log.LogInformation($"* updated: {updated}");
 
-            return new OkObjectResult(HowLongAgoAsString(updated));
-        }
+      //       return new OkObjectResult(HowLongAgoAsString(updated));
+      //   }
 
         [FunctionName("Test")]
         public static IActionResult Run(
