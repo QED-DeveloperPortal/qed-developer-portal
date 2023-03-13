@@ -6,7 +6,7 @@
   {% endif %}
 </time>
 <script>
-  fetch("/howlongago?updated=2016-12-01T00:00:00")
+  fetch("/api/howlongago?updated=2016-12-01T00:00:00")
       .then(response => response.json())
       .then(data => {
         console.log(`* response: ${data}`);
