@@ -2,20 +2,15 @@
   {%- assign date_format = site.date_format | default: "%B %-d, %Y" -%}
   <a class="u-url" href="{{ entry.url | relative_url }}">{{ page.date | date: date_format }}</a>
   {% if page.updated %}
-    <span id="last-updated"></span>
+    <h5 id="last-updated">Updated {{ page.updated | date: date_format }}</span>
   {% endif %}
 </time>
-<script>
+<!-- <script>
   fetch("/api/howlongago?updated=2016-12-01T00:00:00")
       .then(data => {
         const lastUpdatedSpan = document.getElementById("last-updated");
         lastUpdatedSpan.innerText = `Last updated ${data}`;
 
-        console.log(`* response: ${data}`);
+        console.log(`* response: ${JSON.stringify(data)}`);
       });
-  // fetch("/api/Test")
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       console.log(`* response: ${data}`);
-  //     });
-</script>
+</script> -->
