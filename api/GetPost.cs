@@ -34,13 +34,13 @@ namespace DevPortal.Api
             Post post = new Post();
 
       try
-            {
+
+      {
               if (req != null && !String.IsNullOrEmpty(req.Query["filePath"]))
               {
                 log.LogInformation("Incoming Request Body:" + req.Body);
                 filePath = req.Query["filePath"];
               }
-
               //string jsonPayload = "{\"filePath\":\"_posts/2023/2023-03-06-Testing post on new repo13.md\"}";
               //byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
               //MemoryStream stream = new MemoryStream(byteArray);
@@ -50,12 +50,16 @@ namespace DevPortal.Api
               //dynamic data = JsonConvert.DeserializeObject(requestBody);
               //filePath = data.filePath;
 
+              //filePath = "_posts/2023/2023-03-13-Testing markdown 2.md";
+
               postResponse = await GetPostFromRepository(filePath);
 
-              post = MarkdownPostParser.ParseMarkdownContent(postResponse.ResponseMessage);
+              if (postResponse.IsSuccess)
+              {
+                post = MarkdownPostParser.ParseMarkdownContent(postResponse.ResponseMessage);
+              }
 
               Console.WriteLine(post);
-
               log.LogInformation("Response after calling GetPost: ", postResponse.ResponseMessage);
             }
             catch (Exception ex)

@@ -4,6 +4,10 @@ layout: page
 
 {{ content }}
 
+<!-- Add Toast UI Editor -->
+<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
 <section class="content-container">
     <div class="container">   
         <div class="editor-container">
@@ -31,7 +35,7 @@ layout: page
                         <span class="required">Content</span>
                     </label>
                     <!-- Create the editor container -->
-                    <div id="updateEditor">        
+                    <div id="toast-update-editor" class="toast-editor">        
                     </div>
                 </div> 
                 <div>
@@ -44,40 +48,18 @@ layout: page
     </div>
 </section> 
 
-<!-- Initialize Quill editor -->    
-<script> 
-    var toolbarOptions1 = [
-         ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-         ['blockquote', 'code-block'],
-
-         [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-         [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-         [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-         [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-         [{ 'direction': 'rtl' }],                         // text direction
-
-         [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-         [{ 'header': [1, 2, 3, 4, 5, 6, false] }],            
-
-         [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-         [{ 'font': [] }],
-         [{ 'align': [] }],     
-         
-         [ 'link', 'image', 'formula' ],                   // add image support
-
-         ['clean']                                         // remove formatting button
-     ];
-
-     var uquill = new Quill('#updateEditor', {
-         theme: 'snow',
-         modules: {                           
-             toolbar: toolbarOptions1,
-             syntax: true, //Allows syntax highlighting           
-         }
-     });
-
-     const editor = document.getElementById("updateEditor");      
-     
+ 
+<script>  
+      /* Initialise Toast UI Editor */
+      var toastUpdateEditor = new toastui.Editor({
+            el: document.querySelector('#toast-update-editor'),
+            height: '600px',
+            initialEditType: 'markdown',
+            previewStyle: 'vertical',
+            intialValue: 'Enter your awesome content!'
+            //theme: 'dark',
+            //plugins: [[codeSyntaxHighlight, { highlighter: Prism }], [colorSyntax], [tableMergedCell]]
+        });  
 </script>
 
 <script>
@@ -105,13 +87,11 @@ layout: page
                   .then(data => {
                       if (data)
                        {
-                        //var mockdata = '{"title":"Test Post,"categories":"test","author":"chatGpt","layout":null,"tags":"test","filePath":"_posts/1900/1900-01-01-Test%20Post.md","frontMatterContent":null,"date":"1900-01-01T00:00:00", "markdownContent":"<p><h1>Hello Test Post!</h1> </p><p><h2>Hello Test Post Again!</h2></p>"}';
+                        //var mockdata = '{"title":"Testing","categories":"test","author":"chatGpt","tags":"test","body":"","filePath":null,"frontMatterContent":null,"markdownContent":"# Testcontent","date":"2023-03-10T00:48:30+00:00"}';
                         //data = JSON.parse(mockdata);//mockdata.json();
                         
-                        console.log('data:' + data);                        
-                                          
-                        var quillContainer = editor.getElementsByClassName('ql-editor');
-                        quillContainer[0].innerHTML = data.markdownContent;
+                        console.log(`* response: ${data}`);
+                        console.log(`* response: ${JSON.stringify(data)}`);
                         
                         const titleInput = document.getElementById("updatedTitle"); 
                         titleInput.value = data.title;
@@ -121,6 +101,8 @@ layout: page
 
                         const tagsInput = document.getElementById("updatedTags");
                         tagsInput.value = data.tags;
+
+                        toastUpdateEditor.setMarkdown(data.markdownContent);
 
                       } else {
                         console.log("Error occurred on api call");
@@ -169,7 +151,7 @@ layout: page
                 var utitle = document.getElementById("updatedTitle").value;
                 var ucategories = document.getElementById("updatedCategories").value;
                 var utags = document.getElementById("updatedTags").value;
-                var ubody = uquill.root.innerHTML;
+                var ubody = toastUpdateEditor.getMarkdown();//uquill.root.innerHTML;
 
                 updateFormData.append("title", utitle);
                 updateFormData.append("categories", ucategories);
@@ -198,7 +180,6 @@ layout: page
                     reviewContainer.appendChild(goToPostsLink);   
                     reviewContainer.appendChild(postsSpan2);
                 }
-
             }
             catch(error){
                 console.error(error);

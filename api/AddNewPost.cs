@@ -28,7 +28,7 @@ namespace DevPortal.Api
             log.LogInformation("C# HTTP trigger function to add new post invoked.");
 
             //Using this for testing purpose
-            //string jsonPayload = "{\"title\":\"Re-Testing add-new-post 3\",\"categories\":\"test-cat1, test-cat2\",\"tags\":\"test-tag1, test-tag2\",\"body\":\"<p><h1>Hello Test Post!</h1> </p><p><h2>Hello Test Post Again!</h2></p>\"}";
+            //string jsonPayload = "{\"title\":\"Testing markdown 2\",\"categories\":\"test\",\"tags\":\"test\",\"body\":\"## Test Header 2\"}";
             //byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
             //MemoryStream stream = new MemoryStream(byteArray);
             //req.Body = stream;
@@ -38,7 +38,7 @@ namespace DevPortal.Api
             data.Date = DateTime.Now; //TODO: To be removed  when the user can choose date on UI
 
             //Generate content for markdown file for the new post
-            _newPost = MarkdownPostParser.GenerateMarkdownContent(data);
+            _newPost = MarkdownPostParser.GenerateMarkdownContent(data, true);
 
             log.LogInformation("Content of new post:" + _newPost.MarkdownContent);
 
