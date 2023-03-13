@@ -29,14 +29,7 @@ layout: page
                         <input id="newPostTags" type="text" class="" name="tags" placeholder="Enter tags" tabindex="3" required />
                         <span class="required">Tags</span>
                     </label>
-                </div>
-                <!--<div>
-                    <label class="label-content">  
-                        <span class="required">Content</span>
-                    </label>                    
-                    <div id="editor">        
-                    </div>
-                </div>-->  
+                </div>               
                 <div>
                     <label class="label-content">  
                         <span class="required">Content</span>
@@ -57,38 +50,7 @@ layout: page
     </div>
 
      
-    <script>        
-       /* Initialize Quill editor */
-       /*var toolbarOptions = [
-            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-            ['blockquote', 'code-block'],
-
-            [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-            [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-            [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-            [{ 'direction': 'rtl' }],                         // text direction
-
-            [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],            
-
-            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-            [{ 'font': [] }],
-            [{ 'align': [] }],     
-            
-            [ 'link', 'image', 'formula' ],                   // add image support
-
-            ['clean']                                         // remove formatting button
-        ];*/
-
-        /*var quill = new Quill('#editor', {
-            theme: 'snow',
-            modules: {                           
-                toolbar: toolbarOptions,
-                syntax: true, //Allows syntax highlighting           
-            }
-        }); */  
-        
+    <script>  
         /* Initialise Toast UI Editor */
         var toastEditor = new toastui.Editor({
             el: document.querySelector('#toast-ui-editor'),

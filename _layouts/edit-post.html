@@ -49,38 +49,7 @@ layout: page
 </section> 
 
  
-<script> 
-   /* Initialize Quill editor */  
-   /* var toolbarOptions1 = [
-         ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-         ['blockquote', 'code-block'],
-
-         [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-         [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-         [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-         [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-         [{ 'direction': 'rtl' }],                         // text direction
-
-         [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-         [{ 'header': [1, 2, 3, 4, 5, 6, false] }],            
-
-         [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-         [{ 'font': [] }],
-         [{ 'align': [] }],     
-         
-         [ 'link', 'image', 'formula' ],                   // add image support
-
-         ['clean']                                         // remove formatting button
-     ];
-
-     var uquill = new Quill('#updateEditor', {
-         theme: 'snow',
-         modules: {                           
-             toolbar: toolbarOptions1,
-             syntax: true, //Allows syntax highlighting           
-         }
-     });*/
-
+<script>  
       /* Initialise Toast UI Editor */
       var toastUpdateEditor = new toastui.Editor({
             el: document.querySelector('#toast-update-editor'),
@@ -90,11 +59,7 @@ layout: page
             intialValue: 'Enter your awesome content!'
             //theme: 'dark',
             //plugins: [[codeSyntaxHighlight, { highlighter: Prism }], [colorSyntax], [tableMergedCell]]
-        });
-
-     //const editor = document.getElementById("toast-update-editor"); 
-         
-     
+        });  
 </script>
 
 <script>
@@ -125,7 +90,8 @@ layout: page
                         //var mockdata = '{"title":"Testing","categories":"test","author":"chatGpt","tags":"test","body":"","filePath":null,"frontMatterContent":null,"markdownContent":"# Testcontent","date":"2023-03-10T00:48:30+00:00"}';
                         //data = JSON.parse(mockdata);//mockdata.json();
                         
-                        console.log('data:' + data);
+                        console.log(`* response: ${data}`);
+                        console.log(`* response: ${JSON.stringify(data)}`);
                         
                         const titleInput = document.getElementById("updatedTitle"); 
                         titleInput.value = data.title;
@@ -214,7 +180,6 @@ layout: page
                     reviewContainer.appendChild(goToPostsLink);   
                     reviewContainer.appendChild(postsSpan2);
                 }
-
             }
             catch(error){
                 console.error(error);
