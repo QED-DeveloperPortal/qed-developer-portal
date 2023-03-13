@@ -6,14 +6,13 @@
   {% endif %}
 </time>
 <script>
-  // fetch("/api/howlongago?updated=2016-12-01T00:00:00")
+  fetch("/api/howlongago?updated=2016-12-01T00:00:00")
+      .then(data => {
+        console.log(`* response: ${data}`);
+      });
+  // fetch("/api/Test")
   //     .then(response => response.json())
   //     .then(data => {
   //       console.log(`* response: ${data}`);
   //     });
-  fetch("/api/Test")
-      .then(response => response.json())
-      .then(data => {
-        console.log(`* response: ${data}`);
-      });
 </script>
