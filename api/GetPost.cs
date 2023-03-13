@@ -41,21 +41,25 @@ namespace DevPortal.Api
                 log.LogInformation("Incoming Request Body:" + req.Body);
                 filePath = req.Query["filePath"];
               }
-        //string jsonPayload = "{\"filePath\":\"_posts/2023/2023-03-06-Testing post on new repo13.md\"}";
-        //byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
-        //MemoryStream stream = new MemoryStream(byteArray);
-        //req.Body = stream;
+              //string jsonPayload = "{\"filePath\":\"_posts/2023/2023-03-06-Testing post on new repo13.md\"}";
+              //byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
+              //MemoryStream stream = new MemoryStream(byteArray);
+              //req.Body = stream;
 
-        //string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-        //dynamic data = JsonConvert.DeserializeObject(requestBody);
-        //filePath = data.filePath;
+              //string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+              //dynamic data = JsonConvert.DeserializeObject(requestBody);
+              //filePath = data.filePath;
 
-        postResponse = await GetPostFromRepository(filePath);
+              //filePath = "_posts/2023/2023-03-13-Testing markdown 2.md";
 
-              post = MarkdownPostParser.ParseMarkdownContent(postResponse.ResponseMessage);
+              postResponse = await GetPostFromRepository(filePath);
+
+              if (postResponse.IsSuccess)
+              {
+                post = MarkdownPostParser.ParseMarkdownContent(postResponse.ResponseMessage);
+              }
 
               Console.WriteLine(post);
-
               log.LogInformation("Response after calling GetPost: ", postResponse.ResponseMessage);
             }
             catch (Exception ex)

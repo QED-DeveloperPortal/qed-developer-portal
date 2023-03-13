@@ -28,7 +28,7 @@ namespace DevPortal.Api
             log.LogInformation("C# HTTP trigger function processed an UpdatePost request.");
 
             //Using this for testing purpose 
-            //string jsonPayload = "{\"title\":\"Testing post on new repo1\",\"categories\":\"test\",\"tags\":\"another-test\",\"filePath\":\"_posts/2023/2023-03-06-Testing post on new repo1.md\",\"body\":\"<p></p><p><br></p><h1>Hello Test Post!</h1><p> </p><p><br></p><p><br></p><h2>Hello Test Post Again!</h2><p><br></p><p></p><h3>Matt jumping in...</h3><p><br></p><p>Jeny here  again and again and again!</p><p></p>\"}";
+            //string jsonPayload = "{\"title\":\"Testing markdown 2\",\"categories\":\"test\",\"author\":\"chatGpt\",\"layout\":null,\"tags\":\"test\",\"body\":\"---\\n\\r\\ntitle: Testing markdown 2\\r\\nauthor: chatGpt\\r\\ncategories: [test]\\r\\ntags: [test]\\r\\ndate: 2023-03-13 20:58:27 +10:00\\r\\n---\\n\\n\\r\\n## Test Header 2\",\"filePath\":null,\"frontMatterContent\":null,\"markdownContent\":\"\\n\\n\\r\\n## Test Header 2\\r\\n\",\"date\":\"2023-03-13T20:58:27+10:00\"}";
             //byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
             //MemoryStream stream = new MemoryStream(byteArray);
             //req.Body = stream;

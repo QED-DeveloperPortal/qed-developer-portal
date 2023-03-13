@@ -21,7 +21,7 @@ namespace DevPortal.Api.Helpers
       StringBuilder sb = new StringBuilder();
 
       post.FrontMatterContent = GenerateFrontMatter(post.Layout, post.Title, post.Author, post.Categories, post.Tags, post.Date);
-      post.MarkdownContent = $"{post.FrontMatterContent}{post.Body}";
+      //post.MarkdownContent = $"{post.FrontMatterContent}{post.Body}";
 
       if(String.IsNullOrEmpty(post.FilePath))
         post.FilePath = String.Concat($"_posts/", post.Date.Year, "/", post.Date.ToString("yyyy-MM-dd"), "-", post.Title, ".md");
@@ -143,15 +143,15 @@ namespace DevPortal.Api.Helpers
         author = "chatGpt"; //TODO: To be replaced by logged in user
 
       if (String.IsNullOrEmpty(layout))
-        fmBuilder.AppendLine($"---\n");
+        fmBuilder.AppendLine($"---");
       else
-        fmBuilder.AppendLine($"---\nlayout: {layout}");
+        fmBuilder.AppendLine($"---layout: {layout}");
       fmBuilder.AppendLine($"title: {title}");
       fmBuilder.AppendLine($"author: {author}");
       fmBuilder.AppendLine($"categories: {FormatList(categories)}");
       fmBuilder.AppendLine($"tags: {FormatList(tags)}");
       fmBuilder.AppendLine($"date: {date.ToString(date.ToString("yyyy-MM-dd HH:mm:ss zzz")) }");
-      fmBuilder.AppendLine($"---\n\n");
+      fmBuilder.AppendLine($"---\n");
 
       return fmBuilder.ToString();
     }
