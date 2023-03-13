@@ -62,6 +62,7 @@ namespace DevPortal.Api.Helpers
       }
 
       post.MarkdownContent = contentBody.ToString();
+      post.MarkdownContent = post.MarkdownContent.Remove(post.MarkdownContent.LastIndexOf("---", StringComparison.CurrentCultureIgnoreCase));
       post.Body = content;
 
       try

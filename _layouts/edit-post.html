@@ -122,15 +122,10 @@ layout: page
                   .then(data => {
                       if (data)
                        {
-                        //var mockdata = '{"title":"Test Post,"categories":"test","author":"chatGpt","layout":null,"tags":"test","filePath":"_posts/1900/1900-01-01-Test%20Post.md","frontMatterContent":null,"date":"1900-01-01T00:00:00", "markdownContent":"<p><h1>Hello Test Post!</h1> </p><p><h2>Hello Test Post Again!</h2></p>"}';
+                        //var mockdata = '{"title":"Testing","categories":"test","author":"chatGpt","tags":"test","body":"","filePath":null,"frontMatterContent":null,"markdownContent":"# Testcontent","date":"2023-03-10T00:48:30+00:00"}';
                         //data = JSON.parse(mockdata);//mockdata.json();
                         
-                        console.log('data:' + data);                        
-                                          
-                        /*var quillContainer = editor.getElementsByClassName('toast-update-editor');
-                        quillContainer[0].innerHTML = data.markdownContent;*/
-                        
-                        toastUpdateEditor.setMarkdown(data.markdownContent);
+                        console.log('data:' + data);
                         
                         const titleInput = document.getElementById("updatedTitle"); 
                         titleInput.value = data.title;
@@ -140,6 +135,8 @@ layout: page
 
                         const tagsInput = document.getElementById("updatedTags");
                         tagsInput.value = data.tags;
+
+                        toastUpdateEditor.setMarkdown(data.markdownContent);
 
                       } else {
                         console.log("Error occurred on api call");
