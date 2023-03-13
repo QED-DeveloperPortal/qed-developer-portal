@@ -34,23 +34,23 @@ namespace DevPortal.Api
             Post post = new Post();
 
       try
-            {
+
+      {
               if (req != null && !String.IsNullOrEmpty(req.Query["filePath"]))
               {
                 log.LogInformation("Incoming Request Body:" + req.Body);
                 filePath = req.Query["filePath"];
               }
+        //string jsonPayload = "{\"filePath\":\"_posts/2023/2023-03-06-Testing post on new repo13.md\"}";
+        //byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
+        //MemoryStream stream = new MemoryStream(byteArray);
+        //req.Body = stream;
 
-              //string jsonPayload = "{\"filePath\":\"_posts/2023/2023-03-06-Testing post on new repo13.md\"}";
-              //byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
-              //MemoryStream stream = new MemoryStream(byteArray);
-              //req.Body = stream;
+        //string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+        //dynamic data = JsonConvert.DeserializeObject(requestBody);
+        //filePath = data.filePath;
 
-              //string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-              //dynamic data = JsonConvert.DeserializeObject(requestBody);
-              //filePath = data.filePath;
-
-              postResponse = await GetPostFromRepository(filePath);
+        postResponse = await GetPostFromRepository(filePath);
 
               post = MarkdownPostParser.ParseMarkdownContent(postResponse.ResponseMessage);
 
