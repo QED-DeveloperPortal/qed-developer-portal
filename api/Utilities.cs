@@ -23,6 +23,16 @@ namespace DevPortal.Api
             return new OkObjectResult(HowLongAgoAsString(updated));
         }
 
+        [FunctionName("Test")]
+        public static IActionResult Run(
+            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
+            ILogger log)
+        {
+            log.LogInformation("* Running...");
+
+            return new OkObjectResult("Testing...");
+        }
+
         private static string HowLongAgoAsString(DateTime dateTimeUtc)
       {
          TimeSpan timeSpan = DateTime.UtcNow.Subtract(dateTimeUtc);
