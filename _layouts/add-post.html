@@ -25,6 +25,12 @@ layout: page
                         <input id="newPostTags" type="text" class="" name="tags" placeholder="Enter tags" tabindex="3" required />
                         <span class="required">Tags</span>
                     </label>
+                </div>  
+                <div>
+                    <label class="label-tags">
+                        <input id="newPostAuthor" type="text" class="" name="tags" placeholder="Enter author" tabindex="4" required />
+                        <span class="required">Created by</span>
+                    </label>
                 </div>        
                 <div>
                     <label class="label-content">  
@@ -89,6 +95,8 @@ layout: page
                 .then(response => response.json())
                 .then(data => {
                     if (data.clientPrincipal) {  
+                        console.log(`${data.clientPrincipal.userDetails}`);
+
                         const loggedUser = document.getElementById('newPostAuthor');                                  
                         loggedUser.value = `${data.clientPrincipal.userDetails}`;                        
                     }

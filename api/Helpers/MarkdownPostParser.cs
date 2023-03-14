@@ -145,7 +145,7 @@ namespace DevPortal.Api.Helpers
       fmBuilder.AppendLine($"date: {date.ToString(date.ToString("yyyy-MM-dd HH:mm:ss zzz")) }");
 
       //Added as a workaround until vanity url is ready
-      fmBuilder.Append($"share: false");
+      fmBuilder.AppendLine($"share: false");
 
       fmBuilder.AppendLine($"---\n");
 
