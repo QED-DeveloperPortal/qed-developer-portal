@@ -106,6 +106,18 @@ layout: page
                   });
      console.log('api/GetPost call complete!');
 
+     //Get signed in user
+     function getLoggedInUser(){     
+        fetch("/.auth/me")
+            .then(response => response.json())
+            .then(data => {
+                if (data.clientPrincipal) {  
+                    const loggedUser = document.getElementById('newPostAuthor');                                  
+                    loggedUser.value = `${data.clientPrincipal.userDetails}`;                        
+                }
+            }); 
+        }    
+
     //Go to Edit post page and populate the retrieved data  
     async function postUpdateFormDataAsJson ( {update_url, updateFormData }){
             const plainFormData = Object.fromEntries(updateFormData.entries());
@@ -148,6 +160,7 @@ layout: page
                 var ucategories = document.getElementById("updatedCategories").value;
                 var utags = document.getElementById("updatedTags").value;
                 var ubody = toastUpdateEditor.getMarkdown();
+                var updatedBy = getLoggedInUser();
                
                 console.log(`* editor.getMarkdown: ${ubody}`);                
 
@@ -156,6 +169,7 @@ layout: page
                 updateFormData.append("tags", utags);
                 updateFormData.append("body", ubody);
                 updateFormData.append("filePath", filePath);
+                updateFormData.append("author", updatedBy);
 
                 const responseData = await postUpdateFormDataAsJson({ update_url, updateFormData });                  
                 console.log(`* response after POST: ${JSON.stringify(responseData)}`);        

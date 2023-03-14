@@ -133,9 +133,8 @@ namespace DevPortal.Api.Helpers
     {
       StringBuilder fmBuilder = new StringBuilder();
 
-      //TODO: To be replaced by logged in user
       if (String.IsNullOrEmpty(author))
-        author = "chatGpt"; 
+        author = "chatGpt";
 
       fmBuilder.AppendLine($"---");
 

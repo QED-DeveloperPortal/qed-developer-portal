@@ -25,7 +25,7 @@ layout: page
                         <input id="newPostTags" type="text" class="" name="tags" placeholder="Enter tags" tabindex="3" required />
                         <span class="required">Tags</span>
                     </label>
-                </div>               
+                </div>        
                 <div>
                     <label class="label-content">  
                         <span class="required">Content</span>
@@ -82,6 +82,20 @@ layout: page
             return response.json();
         }
 
+        //Get signed in user
+        function getLoggedInUser(){            
+
+            fetch("/.auth/me")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.clientPrincipal) {  
+                        const loggedUser = document.getElementById('newPostAuthor');                                  
+                        loggedUser.value = `${data.clientPrincipal.userDetails}`;                        
+                    }
+                }); 
+        }        
+       
+
         async function handleFormSubmit(event){
             console.log("form submit is clicked!");
             event.preventDefault();
@@ -99,10 +113,13 @@ layout: page
                 var body = toastEditor.getMarkdown();
                 console.log('Content from Toast UI editor -->', body);
 
+                var author = getLoggedInUser();
+
                 formData.append("title", title);
                 formData.append("categories", categories);
                 formData.append("tags", tags);
                 formData.append("body", body);
+                formData.append("author", author);
 
                 const responseData = await postFormDataAsJson({ url, formData });
                 console.log( { responseData });
