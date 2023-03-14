@@ -10,6 +10,9 @@ matt:
     - title: Twitter
       url: https://twitter.com/mattyboisterous
       icon: fab fa-twitter-square
+    - title: Github
+      url: https://github.com/mattyboisterous
+      icon: fab fa-github-square
 
 joyclyn:
   name: Joyclyn Vincent
@@ -35,3 +38,15 @@ chatGpt:
   name: ChatGPT
   abbrev: GPT
   picture: /images/authors/Avatar-ChatGPT.png
+
+tim:
+  name: Tim Foote
+  abbrev: TF
+  picture: /images/authors/tim-foote-150x.jpg
+  links:
+    - title: LinkedIn
+      url: https://www.linkedin.com/in/timjfoote/
+      icon: fab fa-linkedin
+    - title: Github
+      url: https://github.com/timfoote/
+      icon: fab fa-github-square
