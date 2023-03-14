@@ -1,6 +1,7 @@
 ---
 title: How to add a new author in a jekyll site
 author: jeny
+share: false
 categories: [technology]
 tags: [how-to,getting-started,jekyll-tutorial]
 date: 2023-03-07 00:00:00 +1000
