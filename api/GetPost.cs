@@ -33,7 +33,8 @@ namespace DevPortal.Api
             var postResponse = new PostResponse();
             Post post = new Post();
 
-      try
+            try
+
             {
               if (req != null && !String.IsNullOrEmpty(req.Query["filePath"]))
               {
@@ -41,21 +42,16 @@ namespace DevPortal.Api
                 filePath = req.Query["filePath"];
               }
 
-              //string jsonPayload = "{\"filePath\":\"_posts/2023/2023-03-06-Testing post on new repo13.md\"}";
-              //byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
-              //MemoryStream stream = new MemoryStream(byteArray);
-              //req.Body = stream;
-
-              //string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-              //dynamic data = JsonConvert.DeserializeObject(requestBody);
-              //filePath = data.filePath;
+              //filePath = "_posts/2023/2023-03-14-Hello TUI 1.md";
 
               postResponse = await GetPostFromRepository(filePath);
 
-              post = MarkdownPostParser.ParseMarkdownContent(postResponse.ResponseMessage);
+              if (postResponse.IsSuccess)
+              {
+                post = MarkdownPostParser.ParseMarkdownContent(postResponse.ResponseMessage);
+              }
 
               Console.WriteLine(post);
-
               log.LogInformation("Response after calling GetPost: ", postResponse.ResponseMessage);
             }
             catch (Exception ex)
@@ -93,12 +89,7 @@ namespace DevPortal.Api
 
               string content = res[0].Content;
               string sha = res[0].Sha;
-
-              //To update existing post
-              /*commitMessage = $"Update commit for {_newPost.FilePath}";
-              var updateChangeSet = await gitHubClient.Repository.Content.UpdateFile(owner, repoName, filePath,
-               new UpdateFileRequest(commitMessage, fileContent, existingFile[0].Sha, branch));*/
-
+          
               postResponse.IsSuccess = true;
               postResponse.ResponseMessage = content;
             }

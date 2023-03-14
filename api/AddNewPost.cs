@@ -28,19 +28,21 @@ namespace DevPortal.Api
             log.LogInformation("C# HTTP trigger function to add new post invoked.");
 
             //Using this for testing purpose
-            //string jsonPayload = "{\"title\":\"Re-Testing add-new-post 3\",\"categories\":\"test-cat1, test-cat2\",\"tags\":\"test-tag1, test-tag2\",\"body\":\"<p><h1>Hello Test Post!</h1> </p><p><h2>Hello Test Post Again!</h2></p>\"}";
+            //string jsonPayload = "{\"title\":\"Hello TUI 1\",\"categories\":\"test\",\"tags\":\"toast\",\"body\":\"## Test Header 2 \"}";
             //byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
             //MemoryStream stream = new MemoryStream(byteArray);
             //req.Body = stream;
 
             log.LogInformation("Incoming Request Body:" + req.Body);
             dynamic data = JsonConvert.DeserializeObject<Post>(await new StreamReader(req.Body).ReadToEndAsync());
-            data.Date = DateTime.Now; //TODO: To be removed  when the user can choose date on UI
+
+            //TODO: To be removed  when the user can choose date on UI
+            data.Date = DateTime.Now; 
 
             //Generate content for markdown file for the new post
             _newPost = MarkdownPostParser.GenerateMarkdownContent(data);
 
-            log.LogInformation("Content of new post:" + _newPost.MarkdownContent);
+            log.LogInformation("Total content of new post:" + _newPost.TotalContent);
 
             //Call GitHub API function to upload/add this file to the github repo branch
             var postResponse = await AddNewPostToRepository();
@@ -65,27 +67,26 @@ namespace DevPortal.Api
           var gitHubClient = new GitHubClient(new Octokit.ProductHeaderValue("DevPortal"));
           gitHubClient.Credentials = new Credentials(token);
 
-          string fileContent = _newPost.MarkdownContent;
+          string fileContent = _newPost.TotalContent;
           string filePath = _newPost.FilePath;
           string commitMessage = $"First commit for { filePath }";
 
-        try
+          try
           {
-
             //Check if a file with same name exists
-            _logger.LogInformation("Checking if file with same name exists in the repository...");
-            var existingFile =
-              await gitHubClient.Repository.Content.GetAllContentsByRef(owner, repoName, filePath, branch);
+              _logger.LogInformation("Checking if file with same name exists in the repository...");
+              var existingFile =
+                await gitHubClient.Repository.Content.GetAllContentsByRef(owner, repoName, filePath, branch);
 
-            if (existingFile != null)
-            {
-              _logger.LogInformation("File with same name exists.");
+              if (existingFile != null)
+              {
+                _logger.LogInformation("File with same name exists.");
 
-              postResponse.IsSuccess = false;
-              postResponse.ResponseMessage =
-                "A new post could not be added. A post with same name already exists!";
-            }
-            _logger.LogInformation($"** responseBody: {existingFile}");
+                postResponse.IsSuccess = false;
+                postResponse.ResponseMessage =
+                  "A new post could not be added. A post with same name already exists!";
+              }
+              _logger.LogInformation($"** responseBody: {existingFile}");
 
           }
           catch (Octokit.NotFoundException)

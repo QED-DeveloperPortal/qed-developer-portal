@@ -27,8 +27,8 @@ namespace DevPortal.Api
            _logger = log;
             log.LogInformation("C# HTTP trigger function processed an UpdatePost request.");
 
-            //Using this for testing purpose 
-            //string jsonPayload = "{\"title\":\"Testing post on new repo1\",\"categories\":\"test\",\"tags\":\"another-test\",\"filePath\":\"_posts/2023/2023-03-06-Testing post on new repo1.md\",\"body\":\"<p></p><p><br></p><h1>Hello Test Post!</h1><p> </p><p><br></p><p><br></p><h2>Hello Test Post Again!</h2><p><br></p><p></p><h3>Matt jumping in...</h3><p><br></p><p>Jeny here  again and again and again!</p><p></p>\"}";
+            // Using this for testing purpose
+            //string jsonPayload = "{\"title\":\"Hello TUI 1\",\"categories\":\"test\",\"author\":\"chatGpt\",\"layout\":null,\"tags\":\"toast\",\"totalContent\":\"---\\r\\ntitle: Hello TUI 1\\r\\nauthor: chatGpt\\r\\ncategories: [test]\\r\\ntags: [toast]\\r\\ndate: 2023-03-14 10:29:00 +10:00\\r\\n---\\n\\r\\n## Test Header 2 again \",\"filePath\":null,\"frontMatterContent\":null,\"body\":\"\\n\\r\\n## Test Header 2 again\\r\\n\",\"date\":\"2023-03-14T10:29:00+10:00\"}";
             //byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
             //MemoryStream stream = new MemoryStream(byteArray);
             //req.Body = stream;
@@ -75,7 +75,7 @@ namespace DevPortal.Api
                 string commitMessage = $"Updated Content for {post.FilePath}";
                 res = 
                   await gitHubClient.Repository.Content.UpdateFile(owner, repoName, post.FilePath,
-                  new UpdateFileRequest(commitMessage, post.MarkdownContent, existingFile[0].Sha, branch));
+                  new UpdateFileRequest(commitMessage, post.TotalContent, existingFile[0].Sha, branch));
 
                 postResponse.IsSuccess = true;
                 postResponse.ResponseMessage =
