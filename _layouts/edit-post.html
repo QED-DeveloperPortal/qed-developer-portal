@@ -28,7 +28,7 @@ layout: page
                 </div>
                 <div>
                     <label class="label-tags">
-                        <input id="newPostAuthor" type="text" class="" name="tags" placeholder="Enter author" tabindex="4" required />
+                        <input id="updatedAuthor" type="text" class="" name="author" placeholder="Enter author" tabindex="4" required />
                         <span class="required">Updated by</span>
                     </label>
                 </div> 
@@ -103,6 +103,9 @@ layout: page
 
                         const tagsInput = document.getElementById("updatedTags");
                         tagsInput.value = data.tags;
+
+                        const updatedBy = document.getElementById("updatedAuthor");
+                        updatedBy.value = data.author;
 
                         toastUpdateEditor.setMarkdown(data.body);
 
