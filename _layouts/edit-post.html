@@ -102,7 +102,7 @@ layout: page
                         const tagsInput = document.getElementById("updatedTags");
                         tagsInput.value = data.tags;
 
-                        toastUpdateEditor.setMarkdown(data.markdownContent);
+                        toastUpdateEditor.setMarkdown(data.body);
 
                       } else {
                         console.log("Error occurred on api call");
@@ -151,7 +151,9 @@ layout: page
                 var utitle = document.getElementById("updatedTitle").value;
                 var ucategories = document.getElementById("updatedCategories").value;
                 var utags = document.getElementById("updatedTags").value;
-                var ubody = toastUpdateEditor.getMarkdown();//uquill.root.innerHTML;
+                var ubody = toastUpdateEditor.getMarkdown();
+               
+                console.log(`* editor.getMarkdown: ${ubody}`);                
 
                 updateFormData.append("title", utitle);
                 updateFormData.append("categories", ucategories);
@@ -159,8 +161,8 @@ layout: page
                 updateFormData.append("body", ubody);
                 updateFormData.append("filePath", filePath);
 
-                const responseData = await postUpdateFormDataAsJson({ update_url, updateFormData });
-                console.log( { responseData });            
+                const responseData = await postUpdateFormDataAsJson({ update_url, updateFormData });                  
+                console.log(`* response after POST: ${JSON.stringify(responseData)}`);        
                 
                 const reviewContainer = document.getElementById("review-container");  
                 reviewContainer.innerHTML = responseData.responseMessage;

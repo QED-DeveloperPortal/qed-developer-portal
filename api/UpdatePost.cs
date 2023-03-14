@@ -27,8 +27,8 @@ namespace DevPortal.Api
            _logger = log;
             log.LogInformation("C# HTTP trigger function processed an UpdatePost request.");
 
-            //Using this for testing purpose 
-            //string jsonPayload = "{\"title\":\"Testing markdown 2\",\"categories\":\"test\",\"author\":\"chatGpt\",\"layout\":null,\"tags\":\"test\",\"body\":\"---\\n\\r\\ntitle: Testing markdown 2\\r\\nauthor: chatGpt\\r\\ncategories: [test]\\r\\ntags: [test]\\r\\ndate: 2023-03-13 20:58:27 +10:00\\r\\n---\\n\\n\\r\\n## Test Header 2\",\"filePath\":null,\"frontMatterContent\":null,\"markdownContent\":\"\\n\\n\\r\\n## Test Header 2\\r\\n\",\"date\":\"2023-03-13T20:58:27+10:00\"}";
+            // Using this for testing purpose
+            //string jsonPayload = "{\"title\":\"Hello TUI 1\",\"categories\":\"test\",\"author\":\"chatGpt\",\"layout\":null,\"tags\":\"toast\",\"totalContent\":\"---\\r\\ntitle: Hello TUI 1\\r\\nauthor: chatGpt\\r\\ncategories: [test]\\r\\ntags: [toast]\\r\\ndate: 2023-03-14 10:29:00 +10:00\\r\\n---\\n\\r\\n## Test Header 2 again \",\"filePath\":null,\"frontMatterContent\":null,\"body\":\"\\n\\r\\n## Test Header 2 again\\r\\n\",\"date\":\"2023-03-14T10:29:00+10:00\"}";
             //byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
             //MemoryStream stream = new MemoryStream(byteArray);
             //req.Body = stream;
@@ -36,7 +36,7 @@ namespace DevPortal.Api
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject<Post>(requestBody);
 
-            Post updatedPost = MarkdownPostParser.GenerateMarkdownContent(data, false);
+            Post updatedPost = MarkdownPostParser.GenerateMarkdownContent(data);
 
             log.LogInformation("Incoming Request Body:" + req.Body);
 
@@ -75,7 +75,7 @@ namespace DevPortal.Api
                 string commitMessage = $"Updated Content for {post.FilePath}";
                 res = 
                   await gitHubClient.Repository.Content.UpdateFile(owner, repoName, post.FilePath,
-                  new UpdateFileRequest(commitMessage, post.MarkdownContent, existingFile[0].Sha, branch));
+                  new UpdateFileRequest(commitMessage, post.TotalContent, existingFile[0].Sha, branch));
 
                 postResponse.IsSuccess = true;
                 postResponse.ResponseMessage =
