@@ -16,18 +16,13 @@ namespace DevPortal.Api.Helpers
     /// </summary>
     /// <param name="post"></param>
     /// <returns></returns>
-    public static Post GenerateMarkdownContent(Post post, bool isNew)
+    public static Post GenerateMarkdownContent(Post post)
     {
-      StringBuilder sb = new StringBuilder();
+      post.FrontMatterContent = GenerateFrontMatter(post.Title, post.Author, post.Categories, post.Tags, post.Date);
+      //post.MarkdownContent = $"{post.FrontMatterContent}{post.TotalContent}";
+      post.TotalContent = $"{post.FrontMatterContent}{post.Body}";
 
-      post.FrontMatterContent = GenerateFrontMatter(post.Layout, post.Title, post.Author, post.Categories, post.Tags, post.Date);
-
-      if (isNew)
-      {
-        post.MarkdownContent = $"{post.FrontMatterContent}{post.Body}";
-      }
-
-      if(String.IsNullOrEmpty(post.FilePath))
+      if (String.IsNullOrEmpty(post.FilePath))
         post.FilePath = String.Concat($"_posts/", post.Date.Year, "/", post.Date.ToString("yyyy-MM-dd"), "-", post.Title, ".md");
 
       return post;
@@ -36,7 +31,7 @@ namespace DevPortal.Api.Helpers
     /// <summary>
     /// Parse markdown content into Post object
     /// </summary>
-    /// <param name="markdownContent"></param>
+    /// <param name="content"></param>
     /// <returns></returns>
     public static Post ParseMarkdownContent(string content)
     {
@@ -65,14 +60,14 @@ namespace DevPortal.Api.Helpers
         contentBody.AppendLine("---");
       }
 
-      post.MarkdownContent = contentBody.ToString();
-      post.MarkdownContent = post.MarkdownContent.Remove(post.MarkdownContent.LastIndexOf("---", StringComparison.CurrentCultureIgnoreCase));
-      post.Body = content;
+      post.Body = contentBody.ToString();
+      post.Body = post.Body.Remove(post.Body.LastIndexOf("---", StringComparison.CurrentCultureIgnoreCase));
+      post.TotalContent = content;
 
       try
       {
         // get the Jekyll header
-        header = $"{{{header[3..^3]}}}"
+        header = $"{{{header[2..^3]}}}"
           .TrimStart('{')
           .TrimEnd('}');
 
@@ -87,10 +82,6 @@ namespace DevPortal.Api.Helpers
 
             switch (key)
             {
-              case "layout":
-                post.Layout = value;
-                break;
-
               case "title":
                 post.Title = value
                   .Trim('"');
@@ -132,34 +123,38 @@ namespace DevPortal.Api.Helpers
     /// <summary>
     /// Generate the front matter based on the provided information
     /// </summary>
-    /// <param name="layout"></param>
     /// <param name="title"></param>
     /// <param name="author"></param>
     /// <param name="categories"></param>
     /// <param name="tags"></param>
+    /// <param name="date"></param>
     /// <returns></returns>
-    private static string GenerateFrontMatter(string layout, string title, string author, string categories, string tags, DateTime date)
+    private static string GenerateFrontMatter(string title, string author, string categories, string tags, DateTime date)
     {
       StringBuilder fmBuilder = new StringBuilder();
 
-      //TODO: Need to populate signed-in user
+      //TODO: To be replaced by logged in user
       if (String.IsNullOrEmpty(author))
-        author = "chatGpt"; //TODO: To be replaced by logged in user
+        author = "chatGpt"; 
 
-      if (String.IsNullOrEmpty(layout))
-        fmBuilder.AppendLine($"---");
-      else
-        fmBuilder.AppendLine($"---layout: {layout}");
+      fmBuilder.AppendLine($"---");
+
       fmBuilder.AppendLine($"title: {title}");
       fmBuilder.AppendLine($"author: {author}");
       fmBuilder.AppendLine($"categories: {FormatList(categories)}");
       fmBuilder.AppendLine($"tags: {FormatList(tags)}");
       fmBuilder.AppendLine($"date: {date.ToString(date.ToString("yyyy-MM-dd HH:mm:ss zzz")) }");
+
       fmBuilder.AppendLine($"---\n");
 
       return fmBuilder.ToString();
     }
 
+    /// <summary>
+    /// Format the comma-separated items into string array, enclose in square brackets
+    /// </summary>
+    /// <param name="items"></param>
+    /// <returns></returns>
     private static string FormatList(string items)
     {
       string formattedList = "[" + Regex.Replace(items.TrimEnd(','), @" ", "") + "]";
