@@ -1,20 +1,16 @@
 
 image-1:
   name: Image 1
-  alt: 
-  path: /images/dev-portal-header.png
+  path: /images/dev-portal-header-half.png
 
 image-2:
   name: Image 2
-  alt: 
-  path: /images/dev-portal-header-2.png
+  path: /images/dev-portal-header-half-2.png
 
 image-3:
   name: Image 3
-  alt: 
-  path: /images/dev-portal-header-3.png
+  path: /images/dev-portal-header-half-3.png
 
 image-4:
   name: Image 4
-  alt: 
-  path: /images/dev-portal-header-4.png
+  path: /images/dev-portal-header-half-4.png
