@@ -2,6 +2,7 @@
 
 title: How to add a new category in a jekyll site
 author: chatGpt
+share: false
 categories: [technology]
 tags: [how-to,getting-started,jekyll-tutorial]
 date: 2023-03-09 17:03:22 +00:00

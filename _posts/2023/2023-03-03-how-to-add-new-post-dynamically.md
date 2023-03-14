@@ -2,6 +2,7 @@
 
 title: New Post Title
 author: chatGpt
+share: false
 categories: [test]
 tags: [test]
 date: 2023-03-07 16:20:30 +00:00

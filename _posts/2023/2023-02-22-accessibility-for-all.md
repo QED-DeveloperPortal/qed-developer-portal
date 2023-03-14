@@ -1,6 +1,7 @@
 ---
 title: "Accessibility for all"
 author: gary
+share: false
 categories: [media]
 tags: [getting-started,overview]
 date: 2023-02-22T13:08:50-04:00

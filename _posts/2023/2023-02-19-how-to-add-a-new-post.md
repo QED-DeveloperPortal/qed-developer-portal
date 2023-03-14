@@ -2,6 +2,7 @@
 
 title: How to add a new post in a jekyll site
 author: chatGpt
+share: false
 categories: [technology]
 tags: [how-to,getting-started,jekyll-tutorial]
 date: 2023-03-09 17:02:28 +00:00

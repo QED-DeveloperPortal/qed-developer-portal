@@ -4,12 +4,44 @@ layout: page
 
 {{ content }}
 
-<div class="header-image">
-  {% assign hdr_image = '/images/dev-portal-header-half.png' | relative_url %}
-  <img src="{{ hdr_image }}" class="entry-feature-image u-photo" alt="Developer Portal" >
+{% for image in site.data.home-images %}
+  <input id="image-{{ forloop.index }}" type="hidden" value="{{ image[1].path }}" />
+{% endfor %}
+
+<input id="image-max-size" type="hidden" value="{{ site.data.home-images.size }}" />
+
+<div id="header-image" class="header-image">
 </div>
-  
-</div>
+
+<script>
+  // grab the high index value...
+  const imageMaxSize = document.getElementById('image-max-size');
+
+  if (imageMaxSize) {
+    const maxIndex = imageMaxSize.value;
+
+    // generate random number...
+    const index = Math.floor(Math.random() * (maxIndex - 1)) + 1;
+
+    console.log(`looking for element with id 'image-${index}'...`);
+
+    // locate image url by index...
+    const imageUrl = document.getElementById(`image-${index}`).value;
+
+    if (imageUrl) {
+      const imageHeader = document.getElementById('header-image');
+
+      const image = document.createElement("img");
+      image.classList.add('entry-feature-image');
+      image.classList.add('u-photo');
+      image.src = imageUrl;
+      image.alt = "Developer Portal";
+
+      imageHeader.appendChild(image);
+    }
+  }
+</script>
+
 {% include home-mid-links.html %}
 
 <section class="content-container">
